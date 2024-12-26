@@ -51,19 +51,24 @@ document.querySelectorAll('.gallery-grid img').forEach(img => {
             img.style.position = 'fixed';
             img.style.top = '50%';
             img.style.left = '50%';
-            img.style.transform = 'translate(-50%, -50%) scale(1)';
+            img.style.transform = 'translate(-50%, -50%)';
             img.style.zIndex = '1000';
             img.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.7)';
 
             // Adjust dimensions to maintain aspect ratio
-            if (img.naturalWidth > img.naturalHeight) {
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            if (aspectRatio > 1.5) { // Landscape image
                 img.style.width = '90vw';
                 img.style.height = 'auto';
-                img.style.borderRadius = '20px'; // Apply curved edges for horizontal images
-            } else {
+                img.style.borderRadius = '15px'; // Slightly curved edges for landscape images
+            } else if (aspectRatio < 0.75) { // Portrait image
                 img.style.width = 'auto';
                 img.style.height = '90vh';
-                img.style.borderRadius = '50px'; // Apply more pronounced curved edges for vertical images
+                img.style.borderRadius = '50px'; // More curved edges for portrait images
+            } else { // Square or near-square image
+                img.style.width = '80vw';
+                img.style.height = 'auto';
+                img.style.borderRadius = '30px'; // Balanced curved edges for square images
             }
         }
     });
