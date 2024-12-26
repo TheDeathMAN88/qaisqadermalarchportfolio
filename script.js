@@ -78,7 +78,7 @@ document.querySelectorAll('.gallery-grid img').forEach((img, index) => {
                     img.style.borderRadius = '40px';
                     break;
                 case 4: // Photo 5
-                    img.style.width = '55vw';
+                    img.style.width = '40vw';
                     img.style.height = 'auto';
                     img.style.borderRadius = '25px';
                     break;
