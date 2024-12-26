@@ -11,7 +11,111 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Animated URL showcase for Website Development section
+// Professional animation for Website Development section
+function addProfessionalAnimation(container, url, title) {
+    const linkContainer = document.createElement('div');
+    linkContainer.className = 'website-container';
+    linkContainer.style.position = 'relative';
+    linkContainer.style.margin = '20px';
+    linkContainer.style.padding = '20px';
+    linkContainer.style.borderRadius = '15px';
+    linkContainer.style.background = 'rgba(20, 20, 20, 0.9)';
+    linkContainer.style.color = '#f8f9fa';
+    linkContainer.style.textAlign = 'center';
+    linkContainer.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+    linkContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
+
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = title;
+    titleElement.style.marginBottom = '15px';
+    titleElement.style.fontSize = '1.5rem';
+    titleElement.style.fontWeight = 'bold';
+    titleElement.style.color = '#f72585';
+    titleElement.style.textShadow = '0 2px 6px rgba(247, 37, 133, 0.6)';
+
+    const animatedLink = document.createElement('a');
+    animatedLink.href = '#'; // Initially prevent navigation
+    animatedLink.textContent = 'Visit Website';
+    animatedLink.style.display = 'inline-block';
+    animatedLink.style.padding = '10px 20px';
+    animatedLink.style.borderRadius = '30px';
+    animatedLink.style.background = 'linear-gradient(90deg, #f72585, #00d4ff)';
+    animatedLink.style.color = '#fff';
+    animatedLink.style.textDecoration = 'none';
+    animatedLink.style.fontSize = '1rem';
+    animatedLink.style.transition = 'background 0.3s ease, transform 0.3s ease';
+    animatedLink.style.boxShadow = '0 6px 15px rgba(0, 212, 255, 0.5)';
+
+    animatedLink.addEventListener('mouseover', () => {
+        animatedLink.style.transform = 'scale(1.1)';
+    });
+    animatedLink.addEventListener('mouseout', () => {
+        animatedLink.style.transform = 'scale(1)';
+    });
+
+    animatedLink.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent immediate navigation
+
+        const overlay = document.createElement('div');
+        overlay.style.position = 'fixed';
+        overlay.style.top = '0';
+        overlay.style.left = '0';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.background = 'rgba(0, 0, 0, 0.95)';
+        overlay.style.zIndex = '999';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
+
+        const progressBar = document.createElement('div');
+        progressBar.style.width = '50%';
+        progressBar.style.height = '10px';
+        progressBar.style.background = '#f72585';
+        progressBar.style.position = 'absolute';
+        progressBar.style.top = '50%';
+        progressBar.style.left = '25%';
+        progressBar.style.borderRadius = '5px';
+        progressBar.style.overflow = 'hidden';
+
+        const progressFill = document.createElement('div');
+        progressFill.style.width = '0';
+        progressFill.style.height = '100%';
+        progressFill.style.background = '#00d4ff';
+        progressFill.style.transition = 'width 3s linear';
+
+        progressBar.appendChild(progressFill);
+
+        const loadingMessage = document.createElement('div');
+        loadingMessage.textContent = `Taking you to ${title}...`;
+        loadingMessage.style.position = 'absolute';
+        loadingMessage.style.top = '55%';
+        loadingMessage.style.color = '#fff';
+        loadingMessage.style.fontSize = '1.5rem';
+        loadingMessage.style.fontFamily = 'Montserrat, sans-serif';
+        loadingMessage.style.textShadow = '0 2px 5px rgba(0, 0, 0, 0.5)';
+
+        overlay.appendChild(progressBar);
+        overlay.appendChild(loadingMessage);
+        document.body.appendChild(overlay);
+
+        setTimeout(() => {
+            progressFill.style.width = '100%';
+        }, 100);
+
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+            window.open(url, '_blank'); // Navigate after animation
+        }, 3100); // Delay navigation for 3 seconds
+    });
+
+    linkContainer.appendChild(titleElement);
+    linkContainer.appendChild(animatedLink);
+
+    container.appendChild(linkContainer);
+}
+
+// Initialize professional animation for Website Development section
 document.querySelectorAll('#web-development .gallery-grid').forEach(container => {
     container.innerHTML = ''; // Clear existing images
 
@@ -22,109 +126,11 @@ document.querySelectorAll('#web-development .gallery-grid').forEach(container =>
         { url: 'https://example3.com', title: 'Project 3' }
     ];
 
-    websites.forEach((site, index) => {
-        const linkContainer = document.createElement('div');
-        linkContainer.className = 'website-container';
-        linkContainer.style.position = 'relative';
-        linkContainer.style.margin = '20px';
-        linkContainer.style.padding = '20px';
-        linkContainer.style.borderRadius = '15px';
-        linkContainer.style.background = 'rgba(20, 20, 20, 0.9)';
-        linkContainer.style.color = '#f8f9fa';
-        linkContainer.style.textAlign = 'center';
-        linkContainer.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
-        linkContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
-
-        const title = document.createElement('h3');
-        title.textContent = site.title;
-        title.style.marginBottom = '15px';
-        title.style.fontSize = '1.5rem';
-        title.style.fontWeight = 'bold';
-        title.style.color = '#f72585';
-        title.style.textShadow = '0 2px 6px rgba(247, 37, 133, 0.6)';
-
-        const animatedLink = document.createElement('a');
-        animatedLink.href = '#'; // Initially prevent navigation
-        animatedLink.textContent = 'Visit Website';
-        animatedLink.style.display = 'inline-block';
-        animatedLink.style.padding = '10px 20px';
-        animatedLink.style.borderRadius = '30px';
-        animatedLink.style.background = 'linear-gradient(90deg, #f72585, #00d4ff)';
-        animatedLink.style.color = '#fff';
-        animatedLink.style.textDecoration = 'none';
-        animatedLink.style.fontSize = '1rem';
-        animatedLink.style.transition = 'background 0.3s ease, transform 0.3s ease';
-        animatedLink.style.boxShadow = '0 6px 15px rgba(0, 212, 255, 0.5)';
-
-        animatedLink.addEventListener('mouseover', () => {
-            animatedLink.style.transform = 'scale(1.1)';
-        });
-        animatedLink.addEventListener('mouseout', () => {
-            animatedLink.style.transform = 'scale(1)';
-        });
-
-        animatedLink.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent immediate navigation
-
-            const overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100vw';
-            overlay.style.height = '100vh';
-            overlay.style.background = 'rgba(0, 0, 0, 0.8)';
-            overlay.style.zIndex = '999';
-            overlay.style.display = 'flex';
-            overlay.style.justifyContent = 'center';
-            overlay.style.alignItems = 'center';
-            overlay.style.color = '#fff';
-            overlay.style.fontSize = '1.5rem';
-            overlay.style.fontFamily = 'Montserrat, sans-serif';
-            overlay.style.textShadow = '0 2px 5px rgba(0, 0, 0, 0.5)';
-
-            const loadingMessage = document.createElement('div');
-            loadingMessage.textContent = `Taking you to ${site.title}...`;
-            overlay.appendChild(loadingMessage);
-
-            document.body.appendChild(overlay);
-
-            setTimeout(() => {
-                document.body.removeChild(overlay);
-                window.open(site.url, '_blank'); // Navigate after animation
-            }, 3000); // Delay navigation for 3 seconds
-        });
-
-        linkContainer.appendChild(title);
-        linkContainer.appendChild(animatedLink);
-
-        linkContainer.addEventListener('mouseover', () => {
-            linkContainer.style.transform = 'scale(1.05)';
-            linkContainer.style.boxShadow = '0 10px 30px rgba(0, 212, 255, 0.5)';
-        });
-        linkContainer.addEventListener('mouseout', () => {
-            linkContainer.style.transform = 'scale(1)';
-            linkContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
-        });
-
-        container.appendChild(linkContainer);
+    websites.forEach(({ url, title }) => {
+        addProfessionalAnimation(container, url, title);
     });
 });
 
-
-// Keyframes for fadeOut animation
-document.head.insertAdjacentHTML('beforeend', `
-<style>
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-</style>
-`);
 
 
 
