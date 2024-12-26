@@ -14,12 +14,14 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 // Fullscreen and adaptive zoom effect for images
 document.querySelectorAll('.gallery-grid img').forEach(img => {
     img.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+    img.style.cursor = 'pointer';
+    img.style.borderRadius = '10px'; // Apply curved edges to images by default
 
     img.addEventListener('click', () => {
-        // Check if image is already fullscreen
-        if (img.classList.contains('fullscreen')) {
+        // Check if image is already zoomed
+        if (img.classList.contains('zoomed')) {
             document.body.style.overflow = 'auto'; // Enable scrolling
-            img.classList.remove('fullscreen');
+            img.classList.remove('zoomed');
             img.style.position = '';
             img.style.top = '';
             img.style.left = '';
@@ -28,29 +30,32 @@ document.querySelectorAll('.gallery-grid img').forEach(img => {
             img.style.transform = 'scale(1)';
             img.style.zIndex = '';
             img.style.boxShadow = 'none';
+            img.style.borderRadius = '10px'; // Reset curved edges
         } else {
-            // Remove fullscreen from any other image
-            document.querySelectorAll('.gallery-grid img.fullscreen').forEach(fullscreenImg => {
-                fullscreenImg.classList.remove('fullscreen');
-                fullscreenImg.style.position = '';
-                fullscreenImg.style.top = '';
-                fullscreenImg.style.left = '';
-                fullscreenImg.style.width = '';
-                fullscreenImg.style.height = '';
-                fullscreenImg.style.transform = 'scale(1)';
-                fullscreenImg.style.zIndex = '';
-                fullscreenImg.style.boxShadow = 'none';
+            // Remove zoomed state from any other image
+            document.querySelectorAll('.gallery-grid img.zoomed').forEach(zoomedImg => {
+                zoomedImg.classList.remove('zoomed');
+                zoomedImg.style.position = '';
+                zoomedImg.style.top = '';
+                zoomedImg.style.left = '';
+                zoomedImg.style.width = '';
+                zoomedImg.style.height = '';
+                zoomedImg.style.transform = 'scale(1)';
+                zoomedImg.style.zIndex = '';
+                zoomedImg.style.boxShadow = 'none';
+                zoomedImg.style.borderRadius = '10px';
             });
 
-            // Set current image to fullscreen
+            // Set current image to zoomed state
             document.body.style.overflow = 'hidden'; // Disable scrolling
-            img.classList.add('fullscreen');
+            img.classList.add('zoomed');
             img.style.position = 'fixed';
             img.style.top = '50%';
             img.style.left = '50%';
             img.style.transform = 'translate(-50%, -50%) scale(1)';
             img.style.zIndex = '1000';
             img.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.7)';
+            img.style.borderRadius = '20px'; // More pronounced curved edges for zoomed images
 
             // Adjust dimensions to maintain aspect ratio
             if (img.naturalWidth > img.naturalHeight) {
