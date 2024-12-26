@@ -55,28 +55,53 @@ document.querySelectorAll('.gallery-grid img').forEach((img, index) => {
             img.style.zIndex = '1000';
             img.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.7)';
 
-            // Adjust dimensions to maintain aspect ratio
-            const landscapeImages = [0, 2, 4, 5, 6, 7]; // Indexes of images that should zoom smaller
-
-            if (landscapeImages.includes(index)) {
-                img.style.width = '60vw';
-                img.style.height = 'auto';
-                img.style.borderRadius = '15px'; // Curved edges for smaller zoom
-            } else {
-                const aspectRatio = img.naturalWidth / img.naturalHeight;
-                if (aspectRatio > 1.5) { // Landscape image
-                    img.style.width = '90vw';
+            // Assign specific zoom properties based on image index
+            switch (index) {
+                case 0: // Photo 1
+                    img.style.width = '70vw';
                     img.style.height = 'auto';
-                    img.style.borderRadius = '15px'; // Slightly curved edges for landscape images
-                } else if (aspectRatio < 0.75) { // Portrait image
+                    img.style.borderRadius = '20px';
+                    break;
+                case 1: // Photo 2
+                    img.style.width = 'auto';
+                    img.style.height = '80vh';
+                    img.style.borderRadius = '50px';
+                    break;
+                case 2: // Photo 3
+                    img.style.width = '60vw';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '15px';
+                    break;
+                case 3: // Photo 4
                     img.style.width = 'auto';
                     img.style.height = '90vh';
-                    img.style.borderRadius = '50px'; // More curved edges for portrait images
-                } else { // Square or near-square image
+                    img.style.borderRadius = '40px';
+                    break;
+                case 4: // Photo 5
+                    img.style.width = '65vw';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '25px';
+                    break;
+                case 5: // Photo 6
+                    img.style.width = '50vw';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '10px';
+                    break;
+                case 6: // Photo 7
+                    img.style.width = '55vw';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '20px';
+                    break;
+                case 7: // Photo 8
+                    img.style.width = 'auto';
+                    img.style.height = '75vh';
+                    img.style.borderRadius = '35px';
+                    break;
+                default:
                     img.style.width = '80vw';
                     img.style.height = 'auto';
-                    img.style.borderRadius = '30px'; // Balanced curved edges for square images
-                }
+                    img.style.borderRadius = '30px';
+                    break;
             }
         }
     });
