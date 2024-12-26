@@ -15,7 +15,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 document.querySelectorAll('.gallery-grid img').forEach(img => {
     img.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
     img.style.cursor = 'pointer';
-    img.style.borderRadius = '10px'; // Apply curved edges to images by default
 
     img.addEventListener('click', () => {
         // Check if image is already zoomed
@@ -55,15 +54,16 @@ document.querySelectorAll('.gallery-grid img').forEach(img => {
             img.style.transform = 'translate(-50%, -50%) scale(1)';
             img.style.zIndex = '1000';
             img.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.7)';
-            img.style.borderRadius = '20px'; // More pronounced curved edges for zoomed images
 
             // Adjust dimensions to maintain aspect ratio
             if (img.naturalWidth > img.naturalHeight) {
                 img.style.width = '90vw';
                 img.style.height = 'auto';
+                img.style.borderRadius = '20px'; // Apply curved edges for horizontal images
             } else {
                 img.style.width = 'auto';
                 img.style.height = '90vh';
+                img.style.borderRadius = '50px'; // Apply more pronounced curved edges for vertical images
             }
         }
     });
