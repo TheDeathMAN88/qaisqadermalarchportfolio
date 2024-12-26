@@ -58,7 +58,7 @@ document.querySelectorAll('.gallery-grid img').forEach((img, index) => {
             // Assign specific zoom properties based on image index
             switch (index) {
                 case 0: // Photo 1
-                    img.style.width = '70vw';
+                    img.style.width = '60vw';
                     img.style.height = 'auto';
                     img.style.borderRadius = '20px';
                     break;
@@ -78,7 +78,7 @@ document.querySelectorAll('.gallery-grid img').forEach((img, index) => {
                     img.style.borderRadius = '40px';
                     break;
                 case 4: // Photo 5
-                    img.style.width = '65vw';
+                    img.style.width = '55vw';
                     img.style.height = 'auto';
                     img.style.borderRadius = '25px';
                     break;
