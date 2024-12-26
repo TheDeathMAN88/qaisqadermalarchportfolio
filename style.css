@@ -1,0 +1,172 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle at center, #1a1a1d, #0f0f0f);
+    color: #f8f9fa;
+    margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+header {
+    background: rgba(20, 20, 20, 0.95);
+    color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    border-bottom: 2px solid #f8f9fa;
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f72585;
+    text-shadow: 0 4px 6px rgba(247, 37, 133, 0.6);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #f8f9fa;
+    text-decoration: none;
+    font-size: 1.2rem;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #f72585;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(247, 37, 133, 0.8);
+}
+
+#hero {
+    height: 100vh;
+    background: linear-gradient(to right, rgba(247, 37, 133, 0.8), rgba(0, 212, 255, 0.8)), url('images/hero-futuristic.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero h2 {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 30px rgba(247, 37, 133, 0.8);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+#hero p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+#hero .btn {
+    background: linear-gradient(90deg, #f72585, #00d4ff);
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(247, 37, 133, 0.5);
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#hero .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(247, 37, 133, 0.7);
+}
+
+@keyframes pulseGlow {
+    from {
+        text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 25px rgba(247, 37, 133, 0.8);
+    }
+    to {
+        text-shadow: 0 0 40px rgba(0, 212, 255, 1), 0 0 50px rgba(247, 37, 133, 1);
+    }
+}
+
+.section {
+    padding: 6rem 2rem;
+    background: rgba(20, 20, 20, 0.9);
+    margin: 3rem 0;
+    border-radius: 15px;
+    text-align: center;
+    color: #f8f9fa;
+    position: relative;
+}
+
+.section h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(247, 37, 133, 0.8);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 4px;
+    background: #f72585;
+    margin: 10px auto;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+}
+
+footer {
+    background: rgba(15, 15, 15, 0.95);
+    color: #f8f9fa;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 2px solid #f72585;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
