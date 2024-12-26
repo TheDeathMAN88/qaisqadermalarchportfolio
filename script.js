@@ -12,7 +12,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 });
 
 // Fullscreen and adaptive zoom effect for images
-document.querySelectorAll('.gallery-grid img').forEach(img => {
+document.querySelectorAll('.gallery-grid img').forEach((img, index) => {
     img.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
     img.style.cursor = 'pointer';
 
@@ -56,19 +56,27 @@ document.querySelectorAll('.gallery-grid img').forEach(img => {
             img.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.7)';
 
             // Adjust dimensions to maintain aspect ratio
-            const aspectRatio = img.naturalWidth / img.naturalHeight;
-            if (aspectRatio > 1.5) { // Landscape image
-                img.style.width = '90vw';
+            const landscapeImages = [0, 2, 4, 5, 6, 7]; // Indexes of images that should zoom smaller
+
+            if (landscapeImages.includes(index)) {
+                img.style.width = '60vw';
                 img.style.height = 'auto';
-                img.style.borderRadius = '15px'; // Slightly curved edges for landscape images
-            } else if (aspectRatio < 0.75) { // Portrait image
-                img.style.width = 'auto';
-                img.style.height = '90vh';
-                img.style.borderRadius = '50px'; // More curved edges for portrait images
-            } else { // Square or near-square image
-                img.style.width = '80vw';
-                img.style.height = 'auto';
-                img.style.borderRadius = '30px'; // Balanced curved edges for square images
+                img.style.borderRadius = '15px'; // Curved edges for smaller zoom
+            } else {
+                const aspectRatio = img.naturalWidth / img.naturalHeight;
+                if (aspectRatio > 1.5) { // Landscape image
+                    img.style.width = '90vw';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '15px'; // Slightly curved edges for landscape images
+                } else if (aspectRatio < 0.75) { // Portrait image
+                    img.style.width = 'auto';
+                    img.style.height = '90vh';
+                    img.style.borderRadius = '50px'; // More curved edges for portrait images
+                } else { // Square or near-square image
+                    img.style.width = '80vw';
+                    img.style.height = 'auto';
+                    img.style.borderRadius = '30px'; // Balanced curved edges for square images
+                }
             }
         }
     });
