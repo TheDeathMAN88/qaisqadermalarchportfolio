@@ -320,12 +320,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // Add video/animation showcase for Media section
 document.querySelectorAll('#media-section .gallery-grid').forEach(container => {
     const videos = [
-        { embedUrl: 'https://www.youtube.com/watch?v=ULlARaAQLRo', title: 'Animation 1' },
-        { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2' },
-        { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3' }
+        { embedUrl: 'https://www.youtube.com/watch?v=ULlARaAQLRo', title: 'Animation 1', thumbnail: 'thumb1.jpg' },
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2', thumbnail: 'thumb2.jpg' },
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3', thumbnail: 'thumb3.jpg' }
     ];
 
-    videos.forEach(({ embedUrl, title }) => {
+    videos.forEach(({ embedUrl, title, thumbnail }) => {
         const videoContainer = document.createElement('div');
         videoContainer.className = 'video-container';
         videoContainer.style.margin = '20px';
@@ -347,7 +347,7 @@ document.querySelectorAll('#media-section .gallery-grid').forEach(container => {
         videoThumbnail.style.width = '100%';
         videoThumbnail.style.height = '200px';
         videoThumbnail.style.borderRadius = '10px';
-        videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
+        videoThumbnail.style.background = `url(${thumbnail}) center/cover no-repeat`;
 
         videoContainer.appendChild(videoTitle);
         videoContainer.appendChild(videoThumbnail);
@@ -544,3 +544,5 @@ document.querySelectorAll(".gallery-grid img").forEach((img) => {
         document.body.appendChild(overlay);
     });
 });
+
+
