@@ -251,39 +251,105 @@ document.querySelectorAll(".gallery-grid img").forEach((img) => {
 });
 
 
+// Smooth scrolling for navigation links
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        targetSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+});
+
+// Full-page loader with progress bar
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0, 0, 0, 0.95)';
+    overlay.style.zIndex = '9999';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.flexDirection = 'column';
+    overlay.style.color = '#fff';
+    overlay.style.fontFamily = 'Montserrat, sans-serif';
+
+    const progressBarContainer = document.createElement('div');
+    progressBarContainer.style.width = '50%';
+    progressBarContainer.style.height = '10px';
+    progressBarContainer.style.background = '#f72585';
+    progressBarContainer.style.borderRadius = '5px';
+    progressBarContainer.style.overflow = 'hidden';
+
+    const progressFill = document.createElement('div');
+    progressFill.style.width = '0';
+    progressFill.style.height = '100%';
+    progressFill.style.background = '#00d4ff';
+    progressFill.style.transition = 'width 1s linear';
+
+    const loadingMessage = document.createElement('div');
+    loadingMessage.textContent = 'Loading the website, please wait...';
+    loadingMessage.style.marginBottom = '20px';
+    loadingMessage.style.fontSize = '1.5rem';
+    loadingMessage.style.textShadow = '0 2px 5px rgba(0, 0, 0, 0.5)';
+
+    progressBarContainer.appendChild(progressFill);
+    overlay.appendChild(loadingMessage);
+    overlay.appendChild(progressBarContainer);
+    document.body.appendChild(overlay);
+
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        progressFill.style.width = `${progress}%`;
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            document.body.removeChild(overlay);
+        }
+    }, 300);
+});
+
 // Add video/animation showcase for Media section
-document.querySelectorAll('#media-section .gallery-grid').forEach(container => {
-    const videos = [
-        { embedUrl: 'https://www.youtube.com/embed/your-video-id1', title: 'Animation 1' },
-        { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2' },
-        { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3' }
-    ];
+const mediaSection = document.getElementById('media-section');
+const videos = [
+    { embedUrl: 'https://www.youtube.com/embed/sCcDu-PMlPQ', title: 'Animation 1' },
+    { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2' },
+    { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3' }
+];
 
-    videos.forEach(({ embedUrl, title }) => {
-        const videoContainer = document.createElement('div');
-        videoContainer.className = 'video-container';
-        videoContainer.style.margin = '20px';
-        videoContainer.style.padding = '10px';
-        videoContainer.style.borderRadius = '15px';
-        videoContainer.style.background = 'rgba(20, 20, 20, 0.9)';
-        videoContainer.style.color = '#f8f9fa';
-        videoContainer.style.textAlign = 'center';
-        videoContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
-        videoContainer.style.cursor = 'pointer';
+videos.forEach(({ embedUrl, title }) => {
+    const videoContainer = document.createElement('div');
+    videoContainer.className = 'video-container';
+    videoContainer.style.margin = '20px';
+    videoContainer.style.padding = '10px';
+    videoContainer.style.borderRadius = '15px';
+    videoContainer.style.background = 'rgba(20, 20, 20, 0.9)';
+    videoContainer.style.color = '#f8f9fa';
+    videoContainer.style.textAlign = 'center';
+    videoContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
+    videoContainer.style.cursor = 'pointer';
 
-        const videoTitle = document.createElement('h3');
-        videoTitle.textContent = title;
-        videoTitle.style.marginBottom = '10px';
-        videoTitle.style.color = '#f72585';
-        videoTitle.style.fontSize = '1.2rem';
+    const videoTitle = document.createElement('h3');
+    videoTitle.textContent = title;
+    videoTitle.style.marginBottom = '10px';
+    videoTitle.style.color = '#f72585';
+    videoTitle.style.fontSize = '1.2rem';
 
-        const videoThumbnail = document.createElement('div');
-        videoThumbnail.style.width = '100%';
-        videoThumbnail.style.height = '200px';
-        videoThumbnail.style.borderRadius = '10px';
-        videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
+    const videoThumbnail = document.createElement('div');
+    videoThumbnail.style.width = '10%';
+    videoThumbnail.style.height = '200px';
+    videoThumbnail.style.borderRadius = '10px';
+    videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
 
-        videoContainer.appendChild(videoTitle);
+    videoContainer.appendChild(videoTitle);
     videoContainer.appendChild(videoThumbnail);
 
     videoContainer.addEventListener('click', () => {
