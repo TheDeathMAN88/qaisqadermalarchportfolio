@@ -11,6 +11,65 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+// Full-page loader with progress bar
+document.addEventListener('DOMContentLoaded', () => {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0, 0, 0, 0.95)';
+    overlay.style.zIndex = '9999';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.flexDirection = 'column';
+    overlay.style.color = '#fff';
+    overlay.style.fontFamily = 'Montserrat, sans-serif';
+
+    // Create progress bar container
+    const progressBarContainer = document.createElement('div');
+    progressBarContainer.style.width = '50%';
+    progressBarContainer.style.height = '10px';
+    progressBarContainer.style.background = '#f72585';
+    progressBarContainer.style.borderRadius = '5px';
+    progressBarContainer.style.overflow = 'hidden';
+
+    // Create progress fill
+    const progressFill = document.createElement('div');
+    progressFill.style.width = '0';
+    progressFill.style.height = '100%';
+    progressFill.style.background = '#00d4ff';
+    progressFill.style.transition = 'width 1s linear';
+
+    // Add loading message
+    const loadingMessage = document.createElement('div');
+    loadingMessage.textContent = 'Loading the website, please wait...';
+    loadingMessage.style.marginBottom = '20px';
+    loadingMessage.style.fontSize = '1.5rem';
+    loadingMessage.style.textShadow = '0 2px 5px rgba(0, 0, 0, 0.5)';
+
+    progressBarContainer.appendChild(progressFill);
+    overlay.appendChild(loadingMessage);
+    overlay.appendChild(progressBarContainer);
+    document.body.appendChild(overlay);
+
+    // Simulate loading
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        progressFill.style.width = `${progress}%`;
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            document.body.removeChild(overlay);
+        }
+    }, 300); // Adjust speed as needed
+});
+
+
 // Professional animation for Website Development section
 function addProfessionalAnimation(container, url, title) {
     const linkContainer = document.createElement('div');
@@ -134,63 +193,287 @@ document.querySelectorAll('#web-development .gallery-grid').forEach(container =>
 
 
 
-// Standardize container size and fit images in all sections
-document.querySelectorAll('.gallery-grid img').forEach((img) => {
-    img.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
-    img.style.cursor = 'pointer';
-    img.style.objectFit = 'cover'; // Ensure image fits within its container
-    img.style.width = '100%'; // Fit the container width
-    img.style.height = '100%'; // Fit the container height
-    img.style.borderRadius = '10px'; // Apply default curved edges
+// Final Fix: Centered Images with Full Viewability
+document.querySelectorAll(".gallery-grid img").forEach((img) => {
+    img.addEventListener("click", () => {
+        // Create overlay
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100vw";
+        overlay.style.height = "100vh";
+        overlay.style.background = "rgba(0, 0, 0, 0.7)";
+        overlay.style.backdropFilter = "blur(15px)";
+        overlay.style.display = "flex";
+        overlay.style.justifyContent = "center";
+        overlay.style.alignItems = "center";
+        overlay.style.zIndex = "10000";
 
-    img.addEventListener('click', () => {
-        // Check if image is already zoomed
-        if (img.classList.contains('zoomed')) {
-            document.body.style.overflow = 'auto'; // Enable scrolling
-            img.classList.remove('zoomed');
-            img.style.position = '';
-            img.style.top = '';
-            img.style.left = '';
-            img.style.width = '100%'; // Reset width to container
-            img.style.height = '100%'; // Reset height to container
-            img.style.transform = 'scale(1)';
-            img.style.zIndex = '';
-            img.style.boxShadow = 'none';
-            img.style.objectFit = 'cover'; // Reapply container fitting
-            img.style.borderRadius = '10px'; // Reset curved edges
-        } else {
-            // Remove zoomed state from any other image
-            document.querySelectorAll('.gallery-grid img.zoomed').forEach(zoomedImg => {
-                zoomedImg.classList.remove('zoomed');
-                zoomedImg.style.position = '';
-                zoomedImg.style.top = '';
-                zoomedImg.style.left = '';
-                zoomedImg.style.width = '100%';
-                zoomedImg.style.height = '100%';
-                zoomedImg.style.transform = 'scale(1)';
-                zoomedImg.style.zIndex = '';
-                zoomedImg.style.boxShadow = 'none';
-                zoomedImg.style.objectFit = 'cover';
-                zoomedImg.style.borderRadius = '10px';
+        // Clone the image and style it for responsiveness
+        const clonedImg = img.cloneNode();
+        clonedImg.style.maxWidth = "90vw";
+        clonedImg.style.maxHeight = "90vh";
+        clonedImg.style.borderRadius = "15px";
+        clonedImg.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.5)";
+        clonedImg.style.objectFit = "contain"; // Ensures full viewability without distortion
+
+        // Close overlay button
+        const closeOverlay = document.createElement("div");
+        closeOverlay.textContent = "✖";
+        closeOverlay.style.position = "absolute";
+        closeOverlay.style.top = "20px";
+        closeOverlay.style.right = "20px";
+        closeOverlay.style.color = "#fff";
+        closeOverlay.style.fontSize = "2rem";
+        closeOverlay.style.cursor = "pointer";
+        closeOverlay.style.background = "rgba(0, 0, 0, 0.6)";
+        closeOverlay.style.padding = "10px";
+        closeOverlay.style.borderRadius = "50%";
+        closeOverlay.style.textAlign = "center";
+
+        // Close overlay event
+        closeOverlay.addEventListener("click", () => {
+            document.body.style.overflow = ""; // Re-enable scrolling
+            document.body.removeChild(overlay);
+        });
+
+        // Append cloned image and close button to overlay
+        overlay.appendChild(clonedImg);
+        overlay.appendChild(closeOverlay);
+
+        // Disable body scrolling
+        document.body.style.overflow = "hidden";
+
+        // Append overlay to the body
+        document.body.appendChild(overlay);
+    });
+});
+
+
+// Add video/animation showcase for Media section
+document.querySelectorAll('#media-section .gallery-grid').forEach(container => {
+    const videos = [
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id1', title: 'Animation 1' },
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2' },
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3' }
+    ];
+
+    videos.forEach(({ embedUrl, title }) => {
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'video-container';
+        videoContainer.style.margin = '20px';
+        videoContainer.style.padding = '10px';
+        videoContainer.style.borderRadius = '15px';
+        videoContainer.style.background = 'rgba(20, 20, 20, 0.9)';
+        videoContainer.style.color = '#f8f9fa';
+        videoContainer.style.textAlign = 'center';
+        videoContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
+        videoContainer.style.cursor = 'pointer';
+
+        const videoTitle = document.createElement('h3');
+        videoTitle.textContent = title;
+        videoTitle.style.marginBottom = '10px';
+        videoTitle.style.color = '#f72585';
+        videoTitle.style.fontSize = '1.2rem';
+
+        const videoThumbnail = document.createElement('div');
+        videoThumbnail.style.width = '100%';
+        videoThumbnail.style.height = '200px';
+        videoThumbnail.style.borderRadius = '10px';
+        videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
+
+        videoContainer.appendChild(videoTitle);
+        videoContainer.appendChild(videoThumbnail);
+
+        videoContainer.addEventListener('click', () => {
+            const videoOverlay = document.createElement('div');
+            videoOverlay.style.position = 'fixed';
+            videoOverlay.style.top = '0';
+            videoOverlay.style.left = '0';
+            videoOverlay.style.width = '100vw';
+            videoOverlay.style.height = '100vh';
+            videoOverlay.style.background = 'rgba(0, 0, 0, 0.95)';
+            videoOverlay.style.zIndex = '1000';
+            videoOverlay.style.display = 'flex';
+            videoOverlay.style.justifyContent = 'center';
+            videoOverlay.style.alignItems = 'center';
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `${embedUrl}?autoplay=1&rel=0`;
+            iframe.style.width = '90%';
+            iframe.style.height = '90%';
+            iframe.style.border = 'none';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+
+            const closeOverlay = document.createElement('div');
+            closeOverlay.textContent = '✖';
+            closeOverlay.style.position = 'absolute';
+            closeOverlay.style.top = '20px';
+            closeOverlay.style.right = '20px';
+            closeOverlay.style.fontSize = '2rem';
+            closeOverlay.style.color = '#fff';
+            closeOverlay.style.cursor = 'pointer';
+
+            closeOverlay.addEventListener('click', () => {
+                document.body.removeChild(videoOverlay);
             });
 
-            // Set current image to zoomed state
-            document.body.style.overflow = 'hidden'; // Disable scrolling
-            img.classList.add('zoomed');
-            img.style.position = 'fixed';
-            img.style.top = '50%';
-            img.style.left = '50%';
-            img.style.transform = 'translate(-50%, -50%)';
-            img.style.zIndex = '1000';
-            img.style.boxShadow = '0 20px 50px rgba(0, 0, 0, 0.7)';
-            img.style.objectFit = 'contain'; // Ensure the image is fully visible without distortion
+            videoOverlay.appendChild(iframe);
+            videoOverlay.appendChild(closeOverlay);
+            document.body.appendChild(videoOverlay);
+        });
 
-            // Assign standard zoom properties
-            img.style.width = 'auto';
-            img.style.height = 'auto';
-            img.style.maxWidth = '90vw';
-            img.style.maxHeight = '90vh';
-            img.style.borderRadius = '20px';
+        container.appendChild(videoContainer);
+    });
+});
+
+// Scroll-triggered animations for sections
+document.addEventListener("scroll", () => {
+    document.querySelectorAll('.section').forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+            section.classList.add('visible');
         }
+    });
+});
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById("dark-mode-toggle");
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+});
+
+// Scroll Progress Indicator
+document.addEventListener("scroll", () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById("progress-indicator").style.width = progress + "%";
+});
+
+// Initialize Progress Indicator
+const progressIndicator = document.createElement("div");
+progressIndicator.id = "progress-indicator";
+document.body.appendChild(progressIndicator);
+
+// Centered Image View with Blurred Background and Functional Close Button
+document.querySelectorAll(".gallery-grid img").forEach((img) => {
+    img.addEventListener("click", () => {
+        // Create overlay
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100vw";
+        overlay.style.height = "100vh";
+        overlay.style.background = "rgba(255, 255, 255, 0.7)";
+        overlay.style.backdropFilter = "blur(10px)";
+        overlay.style.display = "flex";
+        overlay.style.justifyContent = "center";
+        overlay.style.alignItems = "center";
+        overlay.style.zIndex = "10000";
+
+        // Clone image and set its style
+        const clonedImg = img.cloneNode();
+        clonedImg.style.maxWidth = "90%";
+        clonedImg.style.maxHeight = "90%";
+        clonedImg.style.borderRadius = img.style.borderRadius || "10px";
+        clonedImg.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.5)";
+
+        // Close overlay button
+        const closeOverlay = document.createElement("div");
+        closeOverlay.textContent = "✖";
+        closeOverlay.style.position = "absolute";
+        closeOverlay.style.top = "20px";
+        closeOverlay.style.right = "20px";
+        closeOverlay.style.color = "#fff";
+        closeOverlay.style.fontSize = "2rem";
+        closeOverlay.style.cursor = "pointer";
+        closeOverlay.style.background = "rgba(0, 0, 0, 0.6)";
+        closeOverlay.style.padding = "10px";
+        closeOverlay.style.borderRadius = "50%";
+        closeOverlay.style.textAlign = "center";
+
+        // Close overlay event
+        closeOverlay.addEventListener("click", () => {
+            document.body.style.overflow = ""; // Re-enable scrolling
+            document.body.removeChild(overlay);
+        });
+
+        // Append cloned image and close button to overlay
+        overlay.appendChild(clonedImg);
+        overlay.appendChild(closeOverlay);
+
+        // Disable body scrolling
+        document.body.style.overflow = "hidden";
+
+        // Append overlay to the body
+        document.body.appendChild(overlay);
+    });
+});
+
+// Updated Image Behavior - Consistent with Video Section
+document.querySelectorAll(".gallery-grid img").forEach((img) => {
+    img.addEventListener("click", () => {
+        // Create overlay
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100vw";
+        overlay.style.height = "100vh";
+        overlay.style.background = "rgba(0, 0, 0, 0.8)";
+        overlay.style.display = "flex";
+        overlay.style.justifyContent = "center";
+        overlay.style.alignItems = "center";
+        overlay.style.zIndex = "10000";
+        overlay.style.backdropFilter = "blur(15px)";
+
+        // Create image container
+        const imgContainer = document.createElement("div");
+        imgContainer.style.width = "auto";
+        imgContainer.style.maxWidth = "90%";
+        imgContainer.style.maxHeight = "90%";
+        imgContainer.style.borderRadius = "15px";
+        imgContainer.style.overflow = "hidden";
+        imgContainer.style.boxShadow = "0 10px 30px rgba(0, 0, 0, 0.5)";
+
+        // Clone image and append it to container
+        const clonedImg = img.cloneNode();
+        clonedImg.style.width = "100%";
+        clonedImg.style.height = "auto";
+        imgContainer.appendChild(clonedImg);
+
+        // Close overlay button
+        const closeOverlay = document.createElement("div");
+        closeOverlay.textContent = "✖";
+        closeOverlay.style.position = "absolute";
+        closeOverlay.style.top = "20px";
+        closeOverlay.style.right = "20px";
+        closeOverlay.style.color = "#fff";
+        closeOverlay.style.fontSize = "2rem";
+        closeOverlay.style.cursor = "pointer";
+        closeOverlay.style.background = "rgba(0, 0, 0, 0.6)";
+        closeOverlay.style.padding = "10px";
+        closeOverlay.style.borderRadius = "50%";
+        closeOverlay.style.textAlign = "center";
+
+        // Close overlay event
+        closeOverlay.addEventListener("click", () => {
+            document.body.style.overflow = ""; // Re-enable scrolling
+            document.body.removeChild(overlay);
+        });
+
+        // Append image container and close button to overlay
+        overlay.appendChild(imgContainer);
+        overlay.appendChild(closeOverlay);
+
+        // Disable body scrolling
+        document.body.style.overflow = "hidden";
+
+        // Append overlay to the body
+        document.body.appendChild(overlay);
     });
 });
