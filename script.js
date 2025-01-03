@@ -318,81 +318,83 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Add video/animation showcase for Media section
-const mediaSection = document.getElementById('media-section');
-const videos = [
-    { embedUrl: 'https://www.youtube.com/embed/sCcDu-PMlPQ', title: 'Animation 1' },
-    { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2' },
-    { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3' }
-];
+document.querySelectorAll('#media-section .gallery-grid').forEach(container => {
+    const videos = [
+        { embedUrl: 'https://www.youtube.com/watch?v=ULlARaAQLRo', title: 'Animation 1' },
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id2', title: 'Animation 2' },
+        { embedUrl: 'https://www.youtube.com/embed/your-video-id3', title: 'Animation 3' }
+    ];
 
-videos.forEach(({ embedUrl, title }) => {
-    const videoContainer = document.createElement('div');
-    videoContainer.className = 'video-container';
-    videoContainer.style.margin = '20px';
-    videoContainer.style.padding = '10px';
-    videoContainer.style.borderRadius = '15px';
-    videoContainer.style.background = 'rgba(20, 20, 20, 0.9)';
-    videoContainer.style.color = '#f8f9fa';
-    videoContainer.style.textAlign = 'center';
-    videoContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
-    videoContainer.style.cursor = 'pointer';
+    videos.forEach(({ embedUrl, title }) => {
+        const videoContainer = document.createElement('div');
+        videoContainer.className = 'video-container';
+        videoContainer.style.margin = '20px';
+        videoContainer.style.padding = '10px';
+        videoContainer.style.borderRadius = '15px';
+        videoContainer.style.background = 'rgba(20, 20, 20, 0.9)';
+        videoContainer.style.color = '#f8f9fa';
+        videoContainer.style.textAlign = 'center';
+        videoContainer.style.boxShadow = '0 8px 20px rgba(0, 212, 255, 0.3)';
+        videoContainer.style.cursor = 'pointer';
 
-    const videoTitle = document.createElement('h3');
-    videoTitle.textContent = title;
-    videoTitle.style.marginBottom = '10px';
-    videoTitle.style.color = '#f72585';
-    videoTitle.style.fontSize = '1.2rem';
+        const videoTitle = document.createElement('h3');
+        videoTitle.textContent = title;
+        videoTitle.style.marginBottom = '10px';
+        videoTitle.style.color = '#f72585';
+        videoTitle.style.fontSize = '1.2rem';
 
-    const videoThumbnail = document.createElement('div');
-    videoThumbnail.style.width = '10%';
-    videoThumbnail.style.height = '200px';
-    videoThumbnail.style.borderRadius = '10px';
-    videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
+        const videoThumbnail = document.createElement('div');
+        videoThumbnail.style.width = '100%';
+        videoThumbnail.style.height = '200px';
+        videoThumbnail.style.borderRadius = '10px';
+        videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
 
-    videoContainer.appendChild(videoTitle);
-    videoContainer.appendChild(videoThumbnail);
+        videoContainer.appendChild(videoTitle);
+        videoContainer.appendChild(videoThumbnail);
 
-    videoContainer.addEventListener('click', () => {
-        const videoOverlay = document.createElement('div');
-        videoOverlay.style.position = 'fixed';
-        videoOverlay.style.top = '0';
-        videoOverlay.style.left = '0';
-        videoOverlay.style.width = '100vw';
-        videoOverlay.style.height = '100vh';
-        videoOverlay.style.background = 'rgba(0, 0, 0, 0.95)';
-        videoOverlay.style.zIndex = '1000';
-        videoOverlay.style.display = 'flex';
-        videoOverlay.style.justifyContent = 'center';
-        videoOverlay.style.alignItems = 'center';
+        videoContainer.addEventListener('click', () => {
+            const videoOverlay = document.createElement('div');
+            videoOverlay.style.position = 'fixed';
+            videoOverlay.style.top = '0';
+            videoOverlay.style.left = '0';
+            videoOverlay.style.width = '100vw';
+            videoOverlay.style.height = '100vh';
+            videoOverlay.style.background = 'rgba(0, 0, 0, 0.95)';
+            videoOverlay.style.zIndex = '1000';
+            videoOverlay.style.display = 'flex';
+            videoOverlay.style.justifyContent = 'center';
+            videoOverlay.style.alignItems = 'center';
 
-        const iframe = document.createElement('iframe');
-        iframe.src = `${embedUrl}?autoplay=1&rel=0`;
-        iframe.style.width = '90%';
-        iframe.style.height = '90%';
-        iframe.style.border = 'none';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
+            const iframe = document.createElement('iframe');
+            iframe.src = `${embedUrl.replace('watch?v=', 'embed/')}?autoplay=1&rel=0`;
+            iframe.style.width = '90%';
+            iframe.style.height = '90%';
+            iframe.style.border = 'none';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
 
-        const closeOverlay = document.createElement('div');
-        closeOverlay.textContent = '✖';
-        closeOverlay.style.position = 'absolute';
-        closeOverlay.style.top = '20px';
-        closeOverlay.style.right = '20px';
-        closeOverlay.style.fontSize = '2rem';
-        closeOverlay.style.color = '#fff';
-        closeOverlay.style.cursor = 'pointer';
+            const closeOverlay = document.createElement('div');
+            closeOverlay.textContent = '✖';
+            closeOverlay.style.position = 'absolute';
+            closeOverlay.style.top = '20px';
+            closeOverlay.style.right = '20px';
+            closeOverlay.style.fontSize = '2rem';
+            closeOverlay.style.color = '#fff';
+            closeOverlay.style.cursor = 'pointer';
 
-        closeOverlay.addEventListener('click', () => {
-            document.body.removeChild(videoOverlay);
+            closeOverlay.addEventListener('click', () => {
+                document.body.removeChild(videoOverlay);
+            });
+
+            videoOverlay.appendChild(iframe);
+            videoOverlay.appendChild(closeOverlay);
+            document.body.appendChild(videoOverlay);
         });
 
-        videoOverlay.appendChild(iframe);
-        videoOverlay.appendChild(closeOverlay);
-        document.body.appendChild(videoOverlay);
+        container.appendChild(videoContainer);
     });
-
-    mediaSection.appendChild(videoContainer);
 });
+
 
 // Scroll-triggered animations for sections
 document.addEventListener("scroll", () => {
