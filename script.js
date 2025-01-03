@@ -11,6 +11,32 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
+// Typewriting effect for hero text
+document.addEventListener('DOMContentLoaded', () => {
+    const textElement = document.querySelector('#hero h2');
+    const subTextElement = document.querySelector('#hero p');
+    const text = "Welcome to My Architecture Portfolio";
+    const subText = "Explore my creative journey across various fields of design.";
+    let index = 0;
+    let subIndex = 0;
+
+    function typeText() {
+        if (index < text.length) {
+            textElement.innerHTML += text.charAt(index);
+            index++;
+            setTimeout(typeText, 10); // Adjust speed here
+        } else if (subIndex < subText.length) {
+            subTextElement.innerHTML += subText.charAt(subIndex);
+            subIndex++;
+            setTimeout(typeText, 100);
+        }
+    }
+
+    textElement.innerHTML = '';
+    subTextElement.innerHTML = '';
+    typeText();
+});
+
 // Full-page loader with progress bar
 document.addEventListener('DOMContentLoaded', () => {
     // Create overlay
@@ -544,5 +570,3 @@ document.querySelectorAll(".gallery-grid img").forEach((img) => {
         document.body.appendChild(overlay);
     });
 });
-
-
