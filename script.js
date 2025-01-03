@@ -284,49 +284,48 @@ document.querySelectorAll('#media-section .gallery-grid').forEach(container => {
         videoThumbnail.style.background = 'url("thumbnail.jpg") center/cover no-repeat';
 
         videoContainer.appendChild(videoTitle);
-        videoContainer.appendChild(videoThumbnail);
+    videoContainer.appendChild(videoThumbnail);
 
-        videoContainer.addEventListener('click', () => {
-            const videoOverlay = document.createElement('div');
-            videoOverlay.style.position = 'fixed';
-            videoOverlay.style.top = '0';
-            videoOverlay.style.left = '0';
-            videoOverlay.style.width = '100vw';
-            videoOverlay.style.height = '100vh';
-            videoOverlay.style.background = 'rgba(0, 0, 0, 0.95)';
-            videoOverlay.style.zIndex = '1000';
-            videoOverlay.style.display = 'flex';
-            videoOverlay.style.justifyContent = 'center';
-            videoOverlay.style.alignItems = 'center';
+    videoContainer.addEventListener('click', () => {
+        const videoOverlay = document.createElement('div');
+        videoOverlay.style.position = 'fixed';
+        videoOverlay.style.top = '0';
+        videoOverlay.style.left = '0';
+        videoOverlay.style.width = '100vw';
+        videoOverlay.style.height = '100vh';
+        videoOverlay.style.background = 'rgba(0, 0, 0, 0.95)';
+        videoOverlay.style.zIndex = '1000';
+        videoOverlay.style.display = 'flex';
+        videoOverlay.style.justifyContent = 'center';
+        videoOverlay.style.alignItems = 'center';
 
-            const iframe = document.createElement('iframe');
-            iframe.src = `${embedUrl}?autoplay=1&rel=0`;
-            iframe.style.width = '90%';
-            iframe.style.height = '90%';
-            iframe.style.border = 'none';
-            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            iframe.allowFullscreen = true;
+        const iframe = document.createElement('iframe');
+        iframe.src = `${embedUrl}?autoplay=1&rel=0`;
+        iframe.style.width = '90%';
+        iframe.style.height = '90%';
+        iframe.style.border = 'none';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
 
-            const closeOverlay = document.createElement('div');
-            closeOverlay.textContent = '✖';
-            closeOverlay.style.position = 'absolute';
-            closeOverlay.style.top = '20px';
-            closeOverlay.style.right = '20px';
-            closeOverlay.style.fontSize = '2rem';
-            closeOverlay.style.color = '#fff';
-            closeOverlay.style.cursor = 'pointer';
+        const closeOverlay = document.createElement('div');
+        closeOverlay.textContent = '✖';
+        closeOverlay.style.position = 'absolute';
+        closeOverlay.style.top = '20px';
+        closeOverlay.style.right = '20px';
+        closeOverlay.style.fontSize = '2rem';
+        closeOverlay.style.color = '#fff';
+        closeOverlay.style.cursor = 'pointer';
 
-            closeOverlay.addEventListener('click', () => {
-                document.body.removeChild(videoOverlay);
-            });
-
-            videoOverlay.appendChild(iframe);
-            videoOverlay.appendChild(closeOverlay);
-            document.body.appendChild(videoOverlay);
+        closeOverlay.addEventListener('click', () => {
+            document.body.removeChild(videoOverlay);
         });
 
-        container.appendChild(videoContainer);
+        videoOverlay.appendChild(iframe);
+        videoOverlay.appendChild(closeOverlay);
+        document.body.appendChild(videoOverlay);
     });
+
+    mediaSection.appendChild(videoContainer);
 });
 
 // Scroll-triggered animations for sections
