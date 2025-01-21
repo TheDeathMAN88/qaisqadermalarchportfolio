@@ -143,19 +143,12 @@ header {
 /* Thumbnail Styling with Example Glow */
 .gallery-grid img {
     width: 100%;
-    height: auto;
-    max-height: 250px;
+    height: 250px; /* Set consistent height */
+    object-fit: cover; /* Ensures the images fill the container without distortion */
     border-radius: 15px;
-    object-fit: cover;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.9); /* Base glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-@media screen and (min-width: 1024px) {
-    .gallery-grid img {
-        max-height: 300px;
-    }
-}
-
 
 .gallery-grid img:hover {
     transform: scale(1.1);
@@ -252,24 +245,6 @@ footer p {
     background: rgba(50, 50, 50, 0.9);
 }
 
-body.dark-mode {
-    background: #0f0f0f;
-    color: #fff;
-}
-
-.dark-mode header {
-    background: #1a1a1d;
-}
-
-.dark-mode .nav-links a {
-    color: #fff;
-}
-
-.dark-mode #hero {
-    background: linear-gradient(to right, rgba(10, 10, 10, 0.8), rgba(30, 30, 30, 0.8)), url('images/hero-futuristic.jpg') center/cover no-repeat;
-}
-
-
 /* Section Animations */
 .section {
     opacity: 0;
@@ -281,58 +256,3 @@ body.dark-mode {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* Mobile First - Default Styles for Small Screens */
-
-@media screen and (min-width: 768px) {
-    .navbar {
-        flex-direction: row;
-    }
-
-    .nav-links {
-        justify-content: space-around;
-        gap: 1.5rem;
-    }
-
-    #hero h2 {
-        font-size: 3rem;
-    }
-
-    #hero p {
-        font-size: 1.2rem;
-    }
-
-    .section h2 {
-        font-size: 2.5rem;
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    #hero h2 {
-        font-size: 4rem;
-    }
-
-    #hero p {
-        font-size: 1.5rem;
-    }
-
-    .section h2 {
-        font-size: 3rem;
-    }
-
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-}
-
-@media screen and (min-width: 1440px) {
-    .gallery-grid img {
-        height: 300px; /* Larger image size for wide screens */
-    }
-}
-
