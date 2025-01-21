@@ -11,15 +11,6 @@ document.querySelectorAll('.nav-links a').forEach(link => {
     });
 });
 
-// Add this to your script.js for the hamburger menu
-const menuToggle = document.querySelector('#mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-
 // Typewriting effect for hero text
 document.addEventListener('DOMContentLoaded', () => {
     const textElement = document.querySelector('#hero h2');
