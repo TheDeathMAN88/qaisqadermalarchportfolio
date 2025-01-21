@@ -257,3 +257,57 @@ footer p {
     transform: translateY(0);
 }
 
+/* Mobile First - Default Styles for Small Screens */
+
+@media screen and (min-width: 768px) {
+    .navbar {
+        flex-direction: row;
+    }
+
+    .nav-links {
+        justify-content: space-around;
+        gap: 1.5rem;
+    }
+
+    #hero h2 {
+        font-size: 3rem;
+    }
+
+    #hero p {
+        font-size: 1.2rem;
+    }
+
+    .section h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    #hero h2 {
+        font-size: 4rem;
+    }
+
+    #hero p {
+        font-size: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 3rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .gallery-grid img {
+        height: 300px; /* Larger image size for wide screens */
+    }
+}
+
