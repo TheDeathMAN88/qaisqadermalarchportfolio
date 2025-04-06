@@ -1,135 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Architecture Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Qais Qadermal | Architectural Portfolio</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Source+Code+Pro:wght@300;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <h1 class="logo">Qais Qadermal's Portfolio</h1>
-                <ul class="nav-links">
-                    <li><a href="#photographs">Photographs</a></li>
-                    <li><a href="#graphic-design">Visual Branding & Graphic Artistry</a></li>
-                    <li><a href="#sketches">Architecture Sketches</a></li>
-                    <li><a href="#handcrafted-models-crafts">Handcrafted Models & Crafts</a></li>
-                    <li><a href="#designs">Architecture Designs</a></li>
-                    <li><a href="#web-development">Website Development</a></li>
-                    <li><a href="#media-section">Media Showcase</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
 
-    <main>
-        <section id="hero">
-            <div class="hero-container">
-                <h2>Welcome to My Architecture Portfolio</h2>
-                <p>Explore my creative journey across various fields of design.</p>
-                <a href="#photographs" class="btn">Start Exploring</a>
-            </div>
-        </section>
+  <!-- Website Content -->
+  <div class="content">
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="logo">Qais Qadermal</h1>
+      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      <ul class="nav-links">
+        <li><a href="#hero"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="#about"><i class="fas fa-address-card"></i>About Me</a></li>
+        <li><a href="#design-process"><i class="fas fa-stream"></i>Design Process</a></li>
+        <li><a href="#models"><i class="fas fa-cube"></i>Model</a></li>
+        <li><a href="#gallery"><i class="fas fa-camera"></i>Photographs</a></li>
+        <li><a href="#graphic-design"><i class="fas fa-palette"></i>Branding</a></li>
+        <li><a href="#sketches"><i class="fas fa-pencil-alt"></i>Sketches</a></li>
+        <li><a href="#handcrafted"><i class="fas fa-hammer"></i>Crafts</a></li>
+        <li><a href="#designs"><i class="fas fa-drafting-compass"></i>Designs</a></li>
+        <li><a href="#contact"><i class="fas fa-code"></i>Developments</a></li>
+        <li><a href="#media"><i class="fas fa-video"></i> Media</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <section id="photographs" class="section">
-            <div class="container">
-                <h2>Photographs</h2>
-                <p>A showcase of my photography work.</p>
-                <div class="gallery-grid">
-                    <img src="images/photo2.jpg" alt="Photo 2">
-                    <img src="images/photo4.jpg" alt="Photo 4">
-                    <img src="images/photo5.JPG" alt="Photo 5">
-                    <img src="images/photo6.jpg" alt="Photo 6">
-                    <img src="images/photo8.jpg" alt="Photo 8">
-                    <img src="images/photo7.JPG" alt="Photo 7">
-                    <img src="images/photo1.JPG" alt="Photo 1">
-                    <img src="images/photo3.JPG" alt="Photo 3">
-                </div>
-            </div>
-        </section>
+  <main>
 
-        <section id="graphic-design" class="section">
-            <div class="container">
-                <h2>Visual Branding & Graphic Artistry</h2>
-                <p>Creative designs and illustrations.</p>
-                <div class="gallery-grid">
-                    <img src="images/design/design2.jpg" alt="Design 2">
-                    <img src="images/design/design1.png" alt="Design 1">
-                    <img src="images/design/design3.png" alt="Design 3">
-                    <img src="images/design/design4.png" alt="Design 3">
-                    <img src="images/design/design6.png" alt="Design 3">
-                </div>
-            </div>
-        </section>
-
-        <section id="sketches" class="section">
-            <div class="container">
-                <h2>Architecture Sketches</h2>
-                <p>Hand-drawn sketches of architectural concepts.</p>
-                <div class="gallery-grid">
-                    <img src="images/sketch1.jpg" alt="Sketch 1">
-                    <img src="images/sketch2.jpg" alt="Sketch 2">
-                    <img src="images/sketch3.jpg" alt="Sketch 3">
-                </div>
-            </div>
-        </section>
-
-        <section id="handcrafted-models-crafts" class="section">
-            <div class="container">
-                <h2>Handcrafted Models & Crafts</h2>
-                <p>A showcase of my different hand-made projects</p>
-                <div class="gallery-grid">
-                    <img src="images/project1.jpg" alt="Photo 1">
-                    <img src="images/project2.jpg" alt="Photo 2">
-                    <img src="images/project2.jpg" alt="Photo 3">
-                </div>
-            </div>
-        </section>
-
-
-        <section id="designs" class="section">
-            <div class="container">
-                <h2>Architecture Designs</h2>
-                <p>Detailed designs and digital renderings of architectural projects.</p>
-                <div class="gallery-grid">
-                    <img src="images/design1.jpg" alt="Design 1">
-                    <img src="images/design2.jpg" alt="Design 2">
-                    <img src="images/design3.jpg" alt="Design 3">
-                </div>
-            </div>
-        </section>
-
-        <section id="web-development" class="section">
-            <div class="container">
-                <h2>Website Development</h2>
-                <p>Web projects and interactive designs.</p>
-                <div class="gallery-grid">
-                    <img src="images/Web/design5.png" alt="Web Project 1">
-                    <img src="images/web2.jpg" alt="Web Project 2">
-                    <img src="images/web3.jpg" alt="Web Project 3">
-                </div>
-            </div>
-        </section>
-
-        <section id="media-section" class="section">
-            <div class="container">
-                <h2>Media Showcase</h2>
-                <p>Explore my animations and videos.</p>
-                <div class="gallery-grid"></div>
-            </div>
-        </section>
-        
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 My Portfolio. All Rights Reserved.</p>
+    <section id="hero">
+      <!-- Interactive Canvas -->
+      <canvas id="hero-canvas"></canvas>
+    
+      <div class="dimensional-grid">
+        <!-- 3D Model Column -->
+        <div class="matrix-column">
+          <model-viewer 
+            id="main-model"
+            src="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Contemporary%20House.glb"
+            ar
+            camera-controls
+            style="width:100%;height:100%"
+            shadow-intensity="1.5"
+            environment-image="neutral">
+            </button>
+          </model-viewer>
         </div>
-    </footer>
-    <script src="script.js"></script>
+    
+        <!-- Text Column -->
+        <div class="hologram-column">
+          <div class="quantum-text">
+            <h1 class="flux-title">
+              <span class="glitch-layer">Re</span>
+              <span class="glitch-layer">imagining</span>
+              <span class="glitch-layer">Space</span>
+            </h1>
+            
+            <!-- Interactive DNA Strand -->
+            <div class="dna-helix">
+              <div class="node" data-skill="Modeling"></div>
+              <div class="node" data-skill="Design"></div>
+              <div class="node" data-skill="Innovation"></div>
+            </div>
+    
+            <!-- Holographic CTA -->
+            <button class="hologram-cta">
+              <span class="scanline"></span>
+              <span class="pulse"></span>
+              Begin Exploration
+            </button>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Floating Particles -->
+      <div class="quantum-particles"></div>
+    </section>
+    
+    <section id="about">
+      <div class="academic-profile">
+        <!-- Technical Proficiency Column -->
+        <div class="software-arsenal">
+          <div class="certification-banner">
+            <img src="/assets/images/autodesk-autocad-certified-user.png" alt="Autodesk Certified" class="cert-logo">
+            <div class="cert-details">
+              <h3>Certified Digital Craftsman</h3>
+              <p>AutoCAD</p>
+            </div>
+          </div>
+    
+          <div class="skill-matrix">
+            <div class="software-card">
+              <div class="software-icon">
+                <img src="" alt="AutoCAD">
+              </div>
+              <div class="software-progress">
+                <span>3D Modelling</span>
+                <div class="progress-bar" style="--progress: 85%"></div>
+              </div>
+            </div>
+            <div class="software-card">
+              <div class="software-icon">
+                <img src="/assets/images/Icons/autocad-icon.svg" alt="AutoCAD">
+              </div>
+              <div class="software-progress">
+                <span>Technical Drafting</span>
+                <div class="progress-bar" style="--progress: 90%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="academic-aspiration">
+            <blockquote>
+              I am Qais Qadermal, a high school student preparing to pursue my Bachelor’s degree in architecture. My passion lies in understanding how spaces influence human experience and how design can shape our future. Through my portfolio, I aim to demonstrate my creativity, problem-solving skills, and dedication to architectural innovation. I am eager to bring my ideas to life and refine my skills as I step into the academic and professional world of architecture
+            </blockquote>
+          </div>
+        </div>
 
-<script src="script.js"></script>
+    
+        <!-- Central Portrait -->
+        <div class="academic-portrait">
+          <div class="geometric-frame">
+            <img src="/assets/images/24CB6531-FCF7-47A5-A3C6-26D58FFA23A8_1_105_c.jpeg" alt="Qais Qadermal" class="portfolio-photo">
+          </div>
+        </div>
+       
+    
+        <!-- Design Philosophy Column -->
+        <div class="design-manifesto">
+          <h2>Emerging Design Ethos</h2>
+          <div class="philosophy-grid">
+            <div class="principle">
+              <div class="principle-icon">△</div>
+              <h3>Geometric Integrity</h3>
+              <p>"Pure forms create honest spaces"</p>
+            </div>
+            <div class="principle">
+              <div class="principle-icon">◑</div>
+              <h3>Light & Shadow</h3>
+              <p>Choreographing luminosity</p>
+            </div>
+          </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- 3D Models Section -->
+    <section id="models" class="model-section">
+      <model-viewer 
+        id="model-viewer"
+        src="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Dec%2025.glb"
+        alt="3D Architectural Model"
+        auto-rotate
+        camera-controls
+        interaction-prompt="none"
+        field-of-view="30deg"
+        enable-zoom>
+      </model-viewer>
+
+      <div class="model-info">
+        <h2 id="model-title">Horizon Haven Residence</h2>
+        <p id="model-description">
+          A modern residence blending elegance, sustainability, and functionality.
+        </p>
+      </div>
+
+      <div class="model-controls">
+        <label for="model-selector">Select a Model:</label>
+        <select id="model-selector" onchange="changeModel()">
+          <option 
+            value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Dec%2025.glb"
+            data-title="Horizon Haven Residence"
+            data-description="A modern residence blending elegance, sustainability, and functionality."
+          >
+            Model 1 - Horizon Haven Residence
+          </option>
+          <option
+            value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Contemporary%20House.glb"
+            data-title="Contemporary Residential House"
+            data-description="A modern house blending sleek lines, expansive glass panels, and functional spaces."
+          >
+            Model 2 - Contemporary Residential House
+          </option>
+          <option
+            value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Boardwalk.glb"
+            data-title="Boardwalk Canopy"
+            data-description="A conceptual canopy structure with innovative design"
+          >
+            Model 3 - Boardwalk Canopy
+          </option>
+        </option>
+        <option
+          value=""
+          data-title="Boardwalk Canopy"
+          data-description="A conceptual canopy structure with innovative design"
+        >
+          Model 4 - Boardwalk Canopy
+        </option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Photography Gallery -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <h2>Architectural Photography</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/photo1.JPG" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/photo2.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/photo3.JPG" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/photo6.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/photo8.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="graphic-design" class="gallery-section">
+      <div class="container">
+        <h2>Visual Branding & Graphic Artistry</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Graphic/graphic1.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Graphic/graphic2.png" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Graphic/graphic3.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Graphic/graphic4.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Graphic/graphic5.png" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sketches" class="section">
+      <div class="container">
+        <h2>Architectural Sketches</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="images/sketch1.jpg" alt="Concept Sketch">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="handcrafted" class="gallery-section">
+      <div class="container">
+        <h2>Handcrafted Models & Crafts</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Model/model3.jpeg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Model/model4.jpeg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Model/model2.jpeg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Model/model1.jpeg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="designs" class="gallery-section">
+      <div class="container">
+        <h2>Architectural Designs</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Arch Designs/" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Arch-Designs/design2.jpeg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Arch-Designs/design3.jpeg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+          <div class="gallery-item">
+            <img 
+              src="./assets/images/Arch-Designs/design4.jpg" 
+              onclick="openLightbox(this)"
+              alt="Structural Study 1"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="web-dev" class="section">
+      <div class="container">
+        <h2>Website Development</h2>
+        <p>Explore the websites I have developed.</p>
+        <div class="gallery-grid"> 
+          <div class="btn-container">
+            <a href="https://proposal-of-a-lifetime.vercel.app/" target="_blank" class="form-button">Visit Project 1</a>
+            <a href="https://linksphereofqais.vercel.app/" target="_blank" class="form-button">Visit Project 2</a>
+            <a href="https://islamic-chat.vercel.app/" target="_blank" class="form-button">Visit Project 3</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+      <span class="close-btn" onclick="closeLightbox()">&times;</span>
+      <img id="lightbox-img" src="">
+    </div>
+
+    <section id="media" class="section">
+      <div class="container">
+        <h2>Media Showcase</h2>
+        <div class="gallery-grid">
+          <div class="video-container">
+            <iframe 
+              allowfullscreen
+              src="https://streamable.com/e/bq8oar?"
+              style="border:none; width:100%; height:100%;">
+            </iframe> 
+          </div>
+          <div class="video-container">
+            <iframe 
+              allowfullscreen
+              src="https://streamable.com/e/jyvhx8?"
+              style="border:none; width:100%; height:100%;">
+            </iframe>
+          </div>
+          <div class="video-container">
+            <iframe 
+              allowfullscreen
+              src="https://streamable.com/e/am2pr5?"
+              style="border:none; width:100%; height:100%;">
+            </iframe> 
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>
