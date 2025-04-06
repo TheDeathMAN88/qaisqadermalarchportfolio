@@ -831,3 +831,166 @@
   transition: transform 0.02s linear;
   z-index: 9999;
 }
+
+@media (max-width: 768px) {
+  /* Adjust hero section for mobile */
+  #hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+  
+  .dimensional-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+  }
+  
+  .flux-title {
+    font-size: 3rem;
+  }
+  
+  /* Adjust about section */
+  .academic-profile {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+  
+  .geometric-frame {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  /* Model section adjustments */
+  .model-section {
+    height: auto;
+    min-height: 80vh;
+  }
+  
+  .model-info {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    max-width: 100%;
+    margin-top: 1rem;
+  }
+  
+  /* Gallery adjustments */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-item img {
+    height: 300px;
+  }
+  
+  /* Navigation adjustments */
+  .nav-links {
+    width: 80%;
+  }
+  
+  /* Button container */
+  .btn-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Timeline adjustments */
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .step {
+    width: calc(100% - 60px);
+    left: 0 !important;
+    margin-bottom: 2rem;
+  }
+  
+  .step:nth-child(even) {
+    left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .flux-title {
+    font-size: 2.5rem;
+  }
+  
+  .hologram-cta {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+  
+  .model-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .certification-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+  
+  .logo {
+    position: static;
+    margin-right: auto;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.98);
+    flex-direction: column;
+    padding: 6rem 2rem;
+    transition: right 0.3s ease;
+  }
+  
+  .nav-links.active {
+    right: 0;
+    display: flex;
+  }
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Minimum touch target size */
+a, button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Form elements */
+input, select, textarea {
+  font-size: 16px; /* Prevents iOS zooming */
+}
+
+@media (max-width: 768px) {
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 80vh;
+  }
+  
+  .lightbox .close-btn {
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    font-size: 24px;
+  }
+}
