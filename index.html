@@ -4,477 +4,3507 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Qais Qadermal | Architectural Portfolio</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700&family=Source+Code+Pro:wght@300;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --primary: #0A0E27;
+      --secondary: #00D4FF;
+      --accent: #F72585;
+      --text: #F8F9FA;
+      --text-secondary: #A0AEC0;
+      --bg-dark: #050A1A;
+      --bg-medium: #0F172A;
+      --bg-light: #1E293B;
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    /* Smooth Scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-medium);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--secondary);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+    
+    /* Tech Loading Screen */
+    .tech-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .tech-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loader-content {
+      text-align: center;
+    }
+    
+    .loader-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .tech-loader-bar {
+      width: 300px;
+      height: 4px;
+      background: var(--bg-light);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    
+    .tech-loader-progress {
+      height: 100%;
+      width: 0;
+      background: var(--gradient-3);
+      border-radius: 2px;
+      animation: loader-progress 2s ease-in-out forwards;
+    }
+    
+    @keyframes loader-progress {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+    
+    .loader-dots {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    
+    .loader-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--secondary);
+      animation: loader-dot 1.5s infinite ease-in-out;
+    }
+    
+    .loader-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .loader-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes loader-dot {
+      0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+      }
+      40% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+    
+    /* Neural Network Background */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0.8;
+    }
+    
+    /* 3D Background */
+    #three-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.2;
+    }
+    
+    /* Cyber Grid */
+    .cyber-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      animation: grid-move 20s linear infinite;
+    }
+    
+    @keyframes grid-move {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 40px 40px;
+      }
+    }
+    
+    /* Data Stream Effect */
+    .data-stream {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+      pointer-events: none;
+    }
+    
+    .data-stream::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 212, 255, 0.05) 50%,
+        transparent 100%
+      );
+      animation: data-flow 8s linear infinite;
+    }
+    
+    @keyframes data-flow {
+      0% {
+        transform: translateY(-100%);
+      }
+      100% {
+        transform: translateY(100%);
+      }
+    }
+    
+    /* Neural Network Visualization */
+    .neural-viz {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      pointer-events: none;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 5%;
+      background: rgba(5, 10, 26, 0.85);
+      backdrop-filter: blur(20px);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      padding: 1rem 5%;
+      background: rgba(5, 10, 26, 0.95);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      position: relative;
+    }
+    
+    .logo::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-3);
+      transition: width 0.3s ease;
+    }
+    
+    .logo:hover::after {
+      width: 100%;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: calc(100% - 200px);
+    }
+    
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.8rem 1.2rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-3);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--text);
+    }
+    
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+    
+    .mobile-menu-btn:hover {
+      background: var(--glass);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 300px;
+        height: 100vh;
+        background: var(--bg-medium);
+        flex-direction: column;
+        padding: 6rem 2rem;
+        transition: right 0.3s ease;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+        z-index: 1000;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: rgba(5, 10, 26, 0.7);
+      z-index: 2;
+    }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(247, 37, 133, 0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 2rem;
+    }
+    
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary {
+      background: var(--gradient-3);
+      color: var(--bg-dark);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--glass-border);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--glass);
+      border-color: var(--secondary);
+    }
+    
+    /* Floating Elements */
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.6;
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    .floating-element-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--secondary);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .floating-element-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--accent);
+      bottom: 10%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+      }
+      25% {
+        transform: translateY(-20px) translateX(10px);
+      }
+      50% {
+        transform: translateY(10px) translateX(-10px);
+      }
+      75% {
+        transform: translateY(-15px) translateX(5px);
+      }
+    }
+    
+    /* Section Styles */
+    section {
+      padding: 6rem 5%;
+      position: relative;
+      background: rgba(5, 10, 26, 0.85);
+      z-index: 2;
+    }
+    
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--gradient-3);
+      border-radius: 2px;
+    }
+    
+    /* Holographic Effect */
+    .holographic {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .holographic::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(0, 212, 255, 0.1) 50%,
+        transparent 70%
+      );
+      transform: rotate(45deg);
+      animation: holographic-shine 3s infinite;
+      z-index: 1;
+    }
+    
+    @keyframes holographic-shine {
+      0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+      }
+      100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+      }
+    }
+    
+    /* Glitch Effect */
+    .glitch {
+      position: relative;
+    }
+    
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+    
+    .glitch::before {
+      left: 2px;
+      text-shadow: -1px 0 var(--accent);
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim 5s infinite linear alternate-reverse;
+    }
+    
+    .glitch::after {
+      left: -2px;
+      text-shadow: -1px 0 var(--secondary);
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim2 1s infinite linear alternate-reverse;
+    }
+    
+    @keyframes glitch-anim {
+      0% {
+        clip: rect(65px, 9999px, 119px, 0);
+      }
+      20% {
+        clip: rect(29px, 9999px, 16px, 0);
+      }
+      40% {
+        clip: rect(79px, 9999px, 88px, 0);
+      }
+      60% {
+        clip: rect(20px, 9999px, 86px, 0);
+      }
+      80% {
+        clip: rect(91px, 9999px, 98px, 0);
+      }
+      100% {
+        clip: rect(17px, 9999px, 91px, 0);
+      }
+    }
+    
+    @keyframes glitch-anim2 {
+      0% {
+        clip: rect(65px, 9999px, 119px, 0);
+      }
+      20% {
+        clip: rect(29px, 9999px, 16px, 0);
+      }
+      40% {
+        clip: rect(79px, 9999px, 88px, 0);
+      }
+      60% {
+        clip: rect(20px, 9999px, 86px, 0);
+      }
+      80% {
+        clip: rect(91px, 9999px, 98px, 0);
+      }
+      100% {
+        clip: rect(17px, 9999px, 91px, 0);
+      }
+    }
+    
+    /* About Section */
+    .about {
+      background: rgba(15, 23, 42, 0.85);
+    }
+    
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .about-text {
+      space-y: 2rem;
+    }
+    
+    .about-text h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+    
+    .about-image {
+      position: relative;
+    }
+    
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .skill-tag {
+      padding: 0.5rem 1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      background: var(--gradient-3);
+      color: var(--bg-dark);
+      transform: translateY(-2px);
+    }
+    
+    /* Design Process Section */
+    .design-process {
+      background: rgba(5, 10, 26, 0.85);
+    }
+    
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: var(--secondary);
+      transform: translateX(-50%);
+    }
+    
+    .timeline-step {
+      position: relative;
+      width: 45%;
+      padding: 2rem;
+      background: var(--bg-light);
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-step:nth-child(odd) {
+      left: 0;
+    }
+    
+    .timeline-step:nth-child(even) {
+      left: 55%;
+    }
+    
+    .timeline-step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .timeline-step h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .timeline-step p {
+      color: var(--text-secondary);
+    }
+    
+    /* 3D Models Section */
+    .models {
+      background: rgba(15, 23, 42, 0.85);
+    }
+    
+    .model-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    
+    .model-viewer-wrapper {
+      position: relative;
+      height: 600px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    #model-viewer {
+      width: 100%;
+      height: 100%;
+      --progress-bar-color: var(--secondary);
+    }
+    
+    .model-controls {
+      background: var(--bg-light);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .model-controls h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    
+    .model-controls select {
+      width: 100%;
+      padding: 1rem;
+      background: var(--bg-medium);
+      color: var(--text);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .model-controls select:hover {
+      border-color: var(--secondary);
+    }
+    
+    .model-info {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--glass);
+      border-radius: 10px;
+    }
+    
+    .model-info h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+    
+    .model-info p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* Gallery Sections */
+    .gallery-section {
+      background: rgba(5, 10, 26, 0.85);
+      padding: 6rem 5%;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 400px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(5, 10, 26, 0.9), transparent);
+      padding: 2rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    
+    .gallery-overlay h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    
+    .gallery-overlay p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 10, 26, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .lightbox.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .lightbox-content {
+      display: flex;
+      width: 90%;
+      max-width: 1200px;
+      height: 80vh;
+      background: var(--bg-light);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .lightbox-img-container {
+      flex: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: var(--bg-dark);
+    }
+    
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    
+    .lightbox-info {
+      flex: 1;
+      padding: 3rem;
+      overflow-y: auto;
+    }
+    
+    .lightbox-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .lightbox-info p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+    
+    .lightbox-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .lightbox-tag {
+      padding: 0.5rem 1rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 40px;
+      height: 40px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .close-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: rotate(90deg);
+    }
+    
+    /* Web Development Section */
+    .web-dev {
+      background: rgba(15, 23, 42, 0.85);
+      text-align: center;
+    }
+    
+    .web-dev-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .web-dev p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+    
+    .project-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* Media Section */
+    .media {
+      background: rgba(5, 10, 26, 0.85);
+    }
+    
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 20px;
+    }
+    
+    /* Contact Section */
+    .contact {
+      background: rgba(15, 23, 42, 0.85);
+      text-align: center;
+    }
+    
+    .contact-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .contact p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+    
+    .contact-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* Footer */
+    footer {
+      background: rgba(5, 10, 26, 0.85);
+      padding: 3rem 5%;
+      text-align: center;
+      border-top: 1px solid var(--glass-border);
+      z-index: 2;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    
+    .social-links a {
+      width: 50px;
+      height: 50px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--gradient-3);
+      color: var(--bg-dark);
+      transform: translateY(-3px);
+    }
+    
+    /* AI Assistant */
+    .ai-assistant {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    
+    .ai-assistant:hover {
+      transform: scale(1.1);
+    }
+    
+    .ai-assistant i {
+      font-size: 1.5rem;
+      color: var(--bg-dark);
+    }
+    
+    .ai-chat {
+      position: fixed;
+      bottom: 100px;
+      right: 30px;
+      width: 350px;
+      height: 450px;
+      background: var(--bg-light);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 998;
+    }
+    
+    .ai-chat.active {
+      display: flex;
+    }
+    
+    .ai-chat-header {
+      background: var(--gradient-3);
+      padding: 1rem;
+      color: var(--bg-dark);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .ai-chat-close {
+      background: none;
+      border: none;
+      color: var(--bg-dark);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    
+    .ai-chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+    
+    .ai-message {
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+    
+    .ai-message.user {
+      background: var(--glass);
+      margin-left: auto;
+      text-align: right;
+    }
+    
+    .ai-message.bot {
+      background: var(--glass);
+      border: 1px solid var(--secondary);
+    }
+    
+    .ai-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    
+    .ai-suggestion {
+      background: var(--bg-medium);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .ai-suggestion:hover {
+      background: var(--secondary);
+      color: var(--bg-dark);
+    }
+    
+    .typing-indicator {
+      display: flex;
+      padding: 1rem;
+    }
+    
+    .typing-indicator span {
+      height: 10px;
+      width: 10px;
+      background: var(--secondary);
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 2px;
+      animation: typing 1.4s infinite;
+    }
+    
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes typing {
+      0%, 60%, 100% {
+        transform: translateY(0);
+      }
+      30% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .ai-chat-input {
+      display: flex;
+      padding: 1rem;
+      border-top: 1px solid var(--glass-border);
+    }
+    
+    .ai-chat-input input {
+      flex: 1;
+      background: var(--bg-medium);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 0.8rem 1.2rem;
+      color: var(--text);
+      margin-right: 0.5rem;
+    }
+    
+    .ai-chat-input button {
+      background: var(--gradient-3);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--bg-dark);
+    }
+    
+    /* Biometric Scanner */
+    .biometric-scanner {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    
+    .biometric-scanner:hover {
+      transform: scale(1.1);
+    }
+    
+    .biometric-scanner i {
+      font-size: 1.5rem;
+      color: var(--secondary);
+    }
+    
+    .biometric-scanner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+      opacity: 0;
+      transform: scale(0);
+      border-radius: 50%;
+      transition: all 0.5s ease;
+    }
+    
+    .biometric-scanner.active::before {
+      opacity: 0.3;
+      transform: scale(2);
+    }
+    
+    .biometric-scanner.active i {
+      color: var(--accent);
+    }
+    
+    /* Advanced Features */
+    .cursor-glow {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--secondary);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.1s ease;
+    }
+    
+    .page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    
+    .page-transition.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    
+    .parallax-element {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-light);
+      border: 1px solid var(--secondary);
+      border-radius: 10px;
+      padding: 1rem;
+      max-width: 300px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 1001;
+      transform: translateX(400px);
+      transition: transform 0.3s ease;
+    }
+    
+    .notification.show {
+      transform: translateX(0);
+    }
+    
+    .notification-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .notification-icon {
+      margin-right: 0.5rem;
+      color: var(--secondary);
+    }
+    
+    .notification-title {
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .notification-message {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    .notification-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    
+    /* Performance Metrics */
+    .performance-metrics {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: var(--bg-light);
+      border: 1px solid var(--glass-border);
+      border-radius: 5px;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      z-index: 997;
+      opacity: 0.7;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      .model-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .model-viewer-wrapper {
+        height: 400px;
+      }
+      
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-step {
+        width: calc(100% - 60px);
+        left: 60px !important;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 5%;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .gallery-grid,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-item,
+      .project-card {
+        height: 300px;
+      }
+      
+      .ai-chat {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+      }
+    }
+    
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .animate {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .animate-delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    .animate-delay-2 {
+      animation-delay: 0.4s;
+    }
+    
+    .animate-delay-3 {
+      animation-delay: 0.6s;
+    }
+  </style>
 </head>
 <body>
-  <div id="preloader">
-    <div class="loader"></div>
+  <!-- Tech Loading Screen -->
+  <div class="tech-loader" id="tech-loader">
+    <div class="loader-content">
+      <div class="loader-text">INITIALIZING SYSTEMS</div>
+      <div class="tech-loader-bar">
+        <div class="tech-loader-progress"></div>
+      </div>
+      <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- Website Content -->
-  <div class="content">
-  <nav class="navbar">
+  <!-- Neural Network Background -->
+  <div id="particles-js"></div>
+
+  <!-- 3D Background -->
+  <div id="three-container"></div>
+
+  <!-- Cyber Grid -->
+  <div class="cyber-grid"></div>
+
+  <!-- Data Stream Effect -->
+  <div class="data-stream"></div>
+
+  <!-- Neural Network Visualization -->
+  <canvas class="neural-viz" id="neural-viz"></canvas>
+
+  <!-- Cursor Glow Effect -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="page-transition">
+    <div class="loader-text">LOADING</div>
+  </div>
+
+  <!-- Notification Container -->
+  <div id="notification-container"></div>
+
+  <!-- Performance Metrics -->
+  <div class="performance-metrics" id="performance-metrics">
+    <span id="fps-counter">60 FPS</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
     <div class="nav-container">
-      <h1 class="logo">Qais Qadermal</h1>
-      <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+      <div class="logo">Qais Qadermal</div>
       <ul class="nav-links">
-        <li><a href="#hero"><i class="fas fa-home"></i>Home</a></li>
-        <li><a href="#about"><i class="fas fa-address-card"></i>About Me</a></li>
-        <li><a href="#design-process"><i class="fas fa-stream"></i>Design Process</a></li>
-        <li><a href="#models"><i class="fas fa-cube"></i>Model</a></li>
-        <li><a href="#gallery"><i class="fas fa-camera"></i>Photographs</a></li>
-        <li><a href="#graphic-design"><i class="fas fa-palette"></i>Branding</a></li>
-        <li><a href="#sketches"><i class="fas fa-pencil-alt"></i>Sketches</a></li>
-        <li><a href="#handcrafted"><i class="fas fa-hammer"></i>Crafts</a></li>
-        <li><a href="#designs"><i class="fas fa-drafting-compass"></i>Designs</a></li>
-        <li><a href="#web-dev"><i class="fas fa-code"></i>Developments</a></li>
-        <li><a href="#media"><i class="fas fa-video"></i> Media</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#design-process">Design Process</a></li>
+        <li><a href="#models">Models</a></li>
+        <li><a href="#gallery">Photographs</a></li>
+        <li><a href="#graphic-design">Branding</a></li>
+        <li><a href="#sketches">Sketches</a></li>
+        <li><a href="#handcrafted">Crafts</a></li>
+        <li><a href="#designs">Designs</a></li>
+        <li><a href="#web-dev">Developments</a></li>
+        <li><a href="#media">Media</a></li>
       </ul>
+      <button class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
-
-  <main>
-
-    <section id="hero">
-      <!-- Interactive Canvas -->
-      <canvas id="hero-canvas"></canvas>
-    
-      <div class="dimensional-grid">
-        <!-- 3D Model Column -->
-        <div class="matrix-column">
-          <model-viewer 
-            id="main-model"
-            src="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Contemporary%20House.glb"
-            ar
-            camera-controls
-            style="width:100%;height:100%"
-            shadow-intensity="1.5"
-            environment-image="neutral">
-          </model-viewer>
-        </div>
-    
-        <!-- Text Column -->
-        <div class="hologram-column">
-          <div class="quantum-text">
-            <h1 class="flux-title">
-              <span class="glitch-layer">Re</span>
-              <span class="glitch-layer">imagining</span>
-              <span class="glitch-layer">Space</span>
-            </h1>
-            
-            <!-- Interactive DNA Strand -->
-            <div class="dna-helix">
-              <div class="node" data-skill="Modeling"></div>
-              <div class="node" data-skill="Design"></div>
-              <div class="node" data-skill="Innovation"></div>
-            </div>
-    
-            <!-- Holographic CTA -->
-            <button class="hologram-cta">
-              <span class="scanline"></span>
-              <span class="pulse"></span>
-              Begin Exploration
-            </button>
-          </div>
-        </div>
+  
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="floating-element floating-element-1"></div>
+    <div class="floating-element floating-element-2"></div>
+    <div class="hero-content">
+      <h1 class="hero-title animate">Architectural Visionary</h1>
+      <p class="hero-subtitle animate animate-delay-1">Crafting spaces that inspire, innovate, and endure</p>
+      <div class="hero-buttons animate animate-delay-2">
+        <a href="#gallery" class="btn btn-primary">
+          <i class="fas fa-eye"></i>
+          View My Work
+        </a>
+        <a href="#contact" class="btn btn-secondary">
+          <i class="fas fa-envelope"></i>
+          Get In Touch
+        </a>
       </div>
-    
-      <!-- Floating Particles -->
-      <div class="quantum-particles"></div>
-    </section>
-    
-    <section id="about">
-      <div class="academic-profile">
-        <!-- Technical Proficiency Column -->
-        <div class="software-arsenal">
-          <div class="certification-banner">
-            <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/autodesk-autocad-certified-user.png" alt="Autodesk Certified" class="cert-logo">
-            <div class="cert-details">
-              <h3>Certified Digital Craftsman</h3>
-              <p>AutoCAD</p>
-            </div>
-          </div>
-    
-          <div class="skill-matrix">
-            <div class="software-card">
-              <div class="software-progress">
-                <span>3D Modelling</span>
-                <div class="progress-bar" style="--progress: 85%"></div>
-              </div>
-            </div>
-            <div class="software-card">
-              <div class="software-progress">
-                <span>Technical Drafting</span>
-                <div class="progress-bar" style="--progress: 90%"></div>
-              </div>
-            </div>
-          </div>
-          <div class="academic-aspiration">
-            <blockquote>
-              I am Qais Qadermal, a high school student preparing to pursue my Bachelor’s degree in architecture. My passion lies in understanding how spaces influence human experience and how design can shape our future. Through my portfolio, I aim to demonstrate my creativity, problem-solving skills, and dedication to architectural innovation. I am eager to bring my ideas to life and refine my skills as I step into the academic and professional world of architecture
-            </blockquote>
-          </div>
-        </div>
-
-    
-        <!-- Central Portrait -->
-        <div class="academic-portrait">
-          <div class="geometric-frame">
-            <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/24CB6531-FCF7-47A5-A3C6-26D58FFA23A8_1_105_c.jpeg" alt="Qais Qadermal" class="portfolio-photo">
-          </div>
-        </div>
-       
-    
-        <!-- Design Philosophy Column -->
-        <div class="design-manifesto">
-          <h2>Emerging Design Ethos</h2>
-          <div class="philosophy-grid">
-            <div class="principle">
-              <div class="principle-icon">△</div>
-              <h3>Geometric Integrity</h3>
-              <p>"Pure forms create honest spaces"</p>
-            </div>
-            <div class="principle">
-              <div class="principle-icon">◑</div>
-              <h3>Light & Shadow</h3>
-              <p>Choreographing luminosity</p>
-            </div>
-          </div>
-          </div>
-        </div>
-    </section>
-
-    <!-- 3D Models Section -->
-    <section id="models" class="model-section">
-      <model-viewer 
-        id="model-viewer"
-        src="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Dec%2025.glb"
-        alt="3D Architectural Model"
-        auto-rotate
-        camera-controls
-        interaction-prompt="none"
-        field-of-view="30deg"
-        enable-zoom>
-      </model-viewer>
-
-      <div class="model-info">
-        <h2 id="model-title">Horizon Haven Residence</h2>
-        <p id="model-description">
-          A modern residence blending elegance, sustainability, and functionality.
-        </p>
-      </div>
-
-      <div class="model-controls">
-        <label for="model-selector">Select a Model:</label>
-        <select id="model-selector" onchange="changeModel()">
-          <option 
-            value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Dec%2025.glb"
-            data-title="Horizon Haven Residence"
-            data-description="A modern residence blending elegance, sustainability, and functionality."
-          >
-            Model 1 - Horizon Haven Residence
-          </option>
-          <option
-            value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Contemporary%20House.glb"
-            data-title="Contemporary Residential House"
-            data-description="A modern house blending sleek lines, expansive glass panels, and functional spaces."
-          >
-            Model 2 - Contemporary Residential House
-          </option>
-          <option
-            value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Boardwalk.glb"
-            data-title="Boardwalk Canopy"
-            data-description="A conceptual canopy structure with innovative design"
-          >
-            Model 3 - Boardwalk Canopy
-          </option>
-        </option>
-        <option
-          value=""
-          data-title="Boardwalk Canopy"
-          data-description="A conceptual canopy structure with innovative design"
-        >
-          Model 4 - Boardwalk Canopy
-        </option>
-        </select>
-      </div>
-    </section>
-
-    <!-- Photography Gallery -->
-    <section id="gallery" class="gallery-section">
-      <div class="container">
-        <h2>Architectural Photography</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo1.JPG" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo2.jpg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo3.JPG" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo6.jpg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo8.jpg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="graphic-design" class="gallery-section">
-      <div class="container">
-        <h2>Visual Branding & Graphic Artistry</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic1.jpg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic2.png" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic3.jpg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic4.jpg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic5.png" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="sketches" class="section">
-      <div class="container">
-        <h2>Architectural Sketches</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="images/sketch1.jpg" alt="Concept Sketch">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="handcrafted" class="gallery-section">
-      <div class="container">
-        <h2>Handcrafted Models & Crafts</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model3.jpeg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model4.jpeg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model2.jpeg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model1.jpeg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="designs" class="gallery-section">
-      <div class="container">
-        <h2>Architectural Designs</h2>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/Casa%20Solena.png" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 2"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/Vanta%20House%202.png" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 3"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/Project.png" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 3"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-          <div class="gallery-item">
-            <img 
-              src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/design2.jpeg" 
-              onclick="openLightbox(this)"
-              alt="Structural Study 1"
-              loading="lazy"
-              width="1200"
-              height="800"
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="web-dev" class="section">
-      <div class="container">
-        <h2>Website Development</h2>
-        <p>Explore the websites I have developed.</p>
-        <div class="gallery-grid"> 
-          <div class="btn-container">
-            <a href="https://proposal-of-a-lifetime.vercel.app/" target="_blank" class="form-button">Visit Project 1</a>
-            <a href="https://linksphereofqais.vercel.app/" target="_blank" class="form-button">Visit Project 2</a>
-            <a href="https://islamic-chat.vercel.app/" target="_blank" class="form-button">Visit Project 3</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="lightbox" id="lightbox">
-      <span class="close-btn" onclick="closeLightbox()">&times;</span>
-      <img id="lightbox-img" src="">
     </div>
-
-    <section id="media" class="section">
-      <div class="container">
-        <h2>Media Showcase</h2>
-        <div class="gallery-grid">
-          <div class="video-container">
-            <iframe 
-              allowfullscreen
-              src="https://streamable.com/e/bq8oar?"
-              style="border:none; width:100%; height:100%;">
-            </iframe> 
-          </div>
-          <div class="video-container">
-            <iframe 
-              allowfullscreen
-              src="https://streamable.com/e/jyvhx8?"
-              style="border:none; width:100%; height:100%;">
-            </iframe>
-          </div>
-          <div class="video-container">
-            <iframe 
-              allowfullscreen
-              src="https://streamable.com/e/am2pr5?"
-              style="border:none; width:100%; height:100%;">
-            </iframe> 
-          </div>
+  </section>
+  
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2 class="section-title animate holographic">About Me</h2>
+    <div class="about-content">
+      <div class="about-text animate animate-delay-1">
+        <h3>Passionate Architecture Student</h3>
+        <p>
+          I'm Qais Qadermal, a high school student with a deep passion for architecture and design. My journey in architecture began with a fascination for how spaces influence human emotions and behaviors. I believe that great architecture is not just about buildings, but about creating experiences that resonate with people.
+        </p>
+        <p>
+          Through my studies and projects, I've developed skills in 3D modeling, technical drafting, and architectural visualization. I'm constantly exploring new ways to integrate sustainability, technology, and aesthetics in my designs.
+        </p>
+        <div class="skills">
+          <span class="skill-tag">3D Modeling</span>
+          <span class="skill-tag">AutoCAD</span>
+          <span class="skill-tag">Sketching</span>
+          <span class="skill-tag">Model Making</span>
+          <span class="skill-tag">Visualization</span>
         </div>
       </div>
-    </section>
-  </main>
-  <script type="text/javascript" src="script.js"></script>
+      <div class="about-image animate animate-delay-2">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/24CB6531-FCF7-47A5-A3C6-26D58FFA23A8_1_105_c.jpeg" alt="Qais Qadermal">
+      </div>
+    </div>
+  </section>
+  
+  <!-- Design Process Section -->
+  <section id="design-process" class="design-process">
+    <h2 class="section-title animate holographic">Design Process</h2>
+    <div class="timeline">
+      <div class="timeline-step animate animate-delay-1">
+        <h3><i class="fas fa-lightbulb"></i> Conceptualization</h3>
+        <p>Exploring ideas and defining the core concept through research, sketching, and analysis of the site and context.</p>
+      </div>
+      <div class="timeline-step animate animate-delay-2">
+        <h3><i class="fas fa-drafting-compass"></i> Design Development</h3>
+        <p>Refining the concept into a coherent design solution through iterative drawing, modeling, and material exploration.</p>
+      </div>
+      <div class="timeline-step animate animate-delay-3">
+        <h3><i class="fas fa-cube"></i> 3D Modeling</h3>
+        <p>Creating detailed digital models to visualize spatial relationships, test ideas, and communicate design intent.</p>
+      </div>
+      <div class="timeline-step animate">
+        <h3><i class="fas fa-palette"></i> Visualization</h3>
+        <p>Producing high-quality renderings and visualizations to convey the experiential qualities of the design.</p>
+      </div>
+      <div class="timeline-step animate">
+        <h3><i class="fas fa-file-alt"></i> Documentation</h3>
+        <p>Preparing technical drawings, specifications, and presentations to communicate the design for implementation.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- 3D Models Section -->
+  <section id="models" class="models">
+    <h2 class="section-title animate holographic">3D Models</h2>
+    <div class="model-container">
+      <div class="model-viewer-wrapper animate animate-delay-1">
+        <model-viewer
+          id="model-viewer"
+          src="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Dec%2025.glb"
+          alt="3D Architectural Model"
+          auto-rotate
+          camera-controls
+          interaction-prompt="none"
+          field-of-view="30deg"
+          enable-zoom
+          shadow-intensity="1"
+          loading="eager"
+          reveal="auto">
+        </model-viewer>
+      </div>
+      <div class="model-controls animate animate-delay-2">
+        <h3>Model Collection</h3>
+        <select id="model-selector" onchange="changeModel()">
+          <option value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Dec%2025.glb" data-title="Horizon Haven Residence" data-description="A modern residence blending elegance, sustainability, and functionality.">
+            Horizon Haven Residence
+          </option>
+          <option value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Contemporary%20House.glb" data-title="Contemporary Residential House" data-description="A modern house blending sleek lines, expansive glass panels, and functional spaces.">
+            Contemporary Residential House
+          </option>
+          <option value="https://pub-ac43dabac969401fa2d854c74a17bbc8.r2.dev/Boardwalk.glb" data-title="Boardwalk Canopy" data-description="A conceptual canopy structure with innovative design.">
+            Boardwalk Canopy
+          </option>
+        </select>
+        <div class="model-info">
+          <h4 id="model-title">Horizon Haven Residence</h4>
+          <p id="model-description">A modern residence blending elegance, sustainability, and functionality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Photography Gallery Section -->
+  <section id="gallery" class="gallery-section">
+    <h2 class="section-title animate holographic">Architectural and Nature Photography</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item animate animate-delay-1" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo1.JPG" alt="Toronto Urban View" data-title="Toronto Urban View" data-description="Shot from roof of John H. Daniels Faculty of Architecture, Landscape and Design, it captures old and new buildings in downtown Toronto. It shows how the city keeps growing while keeping its history alive." data-tags="Photography, Toronto, Cityscape, Architecture">
+        <div class="gallery-overlay">
+          <h3>Toronto Urban View</h3>
+          <p>Gothic past meets glass future</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-2" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo2.jpg" alt="Nature in the City" data-title="Nature in the City" data-description="This peaceful photo shows nature quietly flowing through the city. The water moves gently past mossy rocks with greenery in the background." data-tags="Photography, Nature, Water, City, Calm">
+        <div class="gallery-overlay">
+          <h3>Nature in the City</h3>
+          <p>A calm stream, hidden in plain sight</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-3" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo3.JPG" alt="Forest & Snow" data-title="Forest & Snow" data-description="This wide shot captures a snowy mountain and forest. The view is peaceful and powerful, reminding us of nature's size and beauty." data-tags="Photography, Mountains, Snow, Forest">
+        <div class="gallery-overlay">
+          <h3>Forest & Snow</h3>
+          <p>Endless trees under frozen skies</p>
+        </div>
+      </div>
+      <div class="gallery-item animate" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo6.jpg" alt="Urban Sculpture" data-title="Urban Sculpture" data-description="A modern sculpture made of white metal lines stands tall in a city plaza. It shows how public art and urban life can mix." data-tags="Sculpture, Art, Urban Space, Creativity">
+        <div class="gallery-overlay">
+          <h3>Urban Sculpture</h3>
+          <p>Art meets architecture</p>
+        </div>
+      </div>
+      <div class="gallery-item animate" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/photo8.jpg" alt="Suburb Grid" data-title="Suburb Grid" data-description="This photo shows neat rows of homes and roads from above. It highlights the structure of how cities grow and organize space." data-tags="Aerial, Houses, City Planning, Photography">
+        <div class="gallery-overlay">
+          <h3>Suburb Grid</h3>
+          <p>Neighbourhood from the sky</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Graphic Design Section -->
+  <section id="graphic-design" class="gallery-section">
+    <h2 class="section-title animate holographic">Visual Branding & Graphic Artistry</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item animate animate-delay-1" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic1.jpg" alt="Soundscape" data-title="Soundscape Audio Poster" data-description="This poster promotes a premium headphone brand with strong colours and a joyful image. It's made to catch attention and communicate sound quality in a fun, modern way." data-tags="Graphic Design, Poster, Branding, Music">
+        <div class="gallery-overlay">
+          <h3>Soundscape</h3>
+          <p>Upgrade your music experience with bold energy</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-2" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic2.png" alt="The Garden of Secrets" data-title="The Garden of Secrets – Book Cover" data-description="This cover uses deep red roses and classic fonts to create a sense of mystery. It was designed to stand out in a bookstore and express both romance and suspense." data-tags="Book Cover, Floral Design, Typography, Graphic Design">
+        <div class="gallery-overlay">
+          <h3>The Garden of Secrets</h3>
+          <p>A mysterious and romantic book cover</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-3" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic3.jpg" alt="Protect Our Forests" data-title="Protect Our Forests – Campaign Poster" data-description="A soft and friendly poster encouraging people to care for the planet. It combines floral illustrations with a message about climate change and saving our forests." data-tags="Climate Change, Poster Design, Environment, Awareness">
+        <div class="gallery-overlay">
+          <h3>Protect Our Forests</h3>
+          <p>A message for climate awareness</p>
+        </div>
+      </div>
+      <div class="gallery-item animate" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic4.jpg" alt="The Time Keeper" data-title="The Time Keeper – Watch Ad" data-description="This ad is for a brand that values tradition. The design uses circles and modern shapes to highlight a stylish, old-school watch." data-tags="Poster, Branding, Watches, Retro Style">
+        <div class="gallery-overlay">
+          <h3>The Time Keeper</h3>
+          <p>A classic watch, the old-fashioned way</p>
+        </div>
+      </div>
+      <div class="gallery-item animate" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/graphic5.png" alt="Architecture" data-title="Architecture" data-description="This poster mixes architecture with artistic typography. The word "Architecture" becomes part of the structure itself, showing how design is personal and powerful." data-tags="Typography, Architecture, Passion, Poster">
+        <div class="gallery-overlay">
+          <h3>Architecture</h3>
+          <p>Dream of My Life</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Sketches Section -->
+  <section id="sketches" class="gallery-section">
+    <h2 class="section-title animate holographic">Architectural Sketches</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item animate animate-delay-1" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/sketch1.jpg" alt="Conceptual Sketch: Flowing Volumes" data-title="Conceptual Sketch: Flowing Volumes" data-description="An early conceptual sketch exploring fluid, interconnected architectural volumes." data-tags="Sketch, Concept, Volumes">
+        <div class="gallery-overlay">
+          <h3>Conceptual Sketch: Flowing Volumes</h3>
+          <p>Exploring fluid architectural forms</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Handcrafted Models Section -->
+  <section id="handcrafted" class="gallery-section">
+    <h2 class="section-title animate holographic">Handcrafted Models & Crafts</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item animate animate-delay-1" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model3.jpeg" alt="Wooden Stationery Holder" data-title="Wooden Stationery Holder" data-description="A hand-built organizer made of wood, perfect for holding pens and small tools. It mixes creativity with usefulness." data-tags="Craft, Model Making, Wood, School Project">
+        <div class="gallery-overlay">
+          <h3>Wooden Stationery Holder</h3>
+          <p>Small design, big function</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-2" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model4.jpeg" alt="Cardboard Chair Prototype" data-title="Cardboard Chair Prototype" data-description="This chair was made using only cardboard—no glue, no screws just simple inter-locking joints. It supports weight and folds for easy use, showing how smart design works with simple materials." data-tags="Model, Chair, Cardboard, Engineering">
+        <div class="gallery-overlay">
+          <h3>Cardboard Chair Prototype</h3>
+          <p>Designed to fold, built to support</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-3" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/model2.jpeg" alt="Boardwalk Canopy Physical Model" data-title="Boardwalk Canopy Physical Model" data-description="A scale model of a canopy designed for a boardwalk. The sloped roof collects rain, the fabrics below move with the wind, and the glass side lets sunlight through." data-tags="Architecture, Model, Nature, Interactive Design">
+        <div class="gallery-overlay">
+          <h3>Boardwalk Canopy Physical Model</h3>
+          <p>Rain, light, and movement in one design</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Architectural Designs Section -->
+  <section id="designs" class="gallery-section">
+    <h2 class="section-title animate holographic">Architectural Designs</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item animate animate-delay-1" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/design2.jpeg" alt="Design Proposal: Boardwalk Canopy" data-title="Design Proposal: Boardwalk Canopy" data-description="A digital rendering of the boardwalk canopy project. The roof collects rainwater, the hanging fabrics move in the wind, and sunlight is filtered through a glass barrier. It invites people to experience nature in a new way." data-tags="Architecture, Canopy, Public Space, Sustainability">
+        <div class="gallery-overlay">
+          <h3>Boardwalk Canopy</h3>
+          <p>Design that moves with the weather</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-2" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/design3.jpeg" alt="Modern House Concept" data-title="Modern House Concept" data-description="This design shows a cozy and modern house. With large windows, warm lighting, and clean lines, powered by solar panels, it's made to feel open and welcoming." data-tags="Architecture, Home Design, Modern, Visualization, Sustainable">
+        <div class="gallery-overlay">
+          <h3>Modern House</h3>
+          <p>Open, warm, and bright</p>
+        </div>
+      </div>
+      <div class="gallery-item animate animate-delay-3" onclick="openLightbox(this)">
+        <img src="https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/design4.jpg" alt="Two-Stories House Concept" data-title="Two-Stories House Concept" data-description="This modern two-bedroom house is designed for a small family. It features large windows, a red sloped roof, and a mix of natural and dark materials. The layout includes a driveway, garden space, and a backyard area—offering comfort, light, and privacy in a compact design." data-tags="Architecture, House Design, Two-Bedroom, Modern, Residential">
+        <div class="gallery-overlay">
+          <h3>Two-Stories House Concept</h3>
+          <p>A cozy and efficient design for everyday living</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Web Development Section -->
+  <section id="web-dev" class="web-dev">
+    <h2 class="section-title animate holographic">Website Development</h2>
+    <div class="web-dev-content animate animate-delay-1">
+      <p>Explore the websites I have developed.</p>
+      <div class="project-buttons">
+        <a href="https://proposal-of-a-lifetime.vercel.app/" target="_blank" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i>
+          Visit Project 1
+        </a>
+        <a href="https://linksphereofqais.vercel.app/" target="_blank" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i>
+          Visit Project 2
+        </a>
+        <a href="https://islamic-chat.vercel.app/" target="_blank" class="btn btn-primary">
+          <i class="fas fa-external-link-alt"></i>
+          Visit Project 3
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Media Section -->
+  <section id="media" class="media">
+    <h2 class="section-title animate holographic">Media Showcase</h2>
+    <div class="video-grid">
+      <div class="video-container animate animate-delay-1">
+        <iframe
+          allowfullscreen
+          src="https://streamable.com/e/bq8oar?"
+          style="border:none; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div class="video-container animate animate-delay-2">
+        <iframe
+          allowfullscreen
+          src="https://streamable.com/e/jyvhx8?"
+          style="border:none; width:100%; height:100%;">
+        </iframe>
+      </div>
+      <div class="video-container animate animate-delay-3">
+        <iframe
+          allowfullscreen
+          src="https://streamable.com/e/am2pr5?"
+          style="border:none; width:100%; height:100%;">
+        </iframe>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2 class="section-title animate holographic">Get In Touch</h2>
+    <div class="contact-content animate animate-delay-1">
+      <p>
+        I'm always excited to collaborate on new projects and discuss architectural opportunities. 
+        Feel free to reach out if you'd like to work together or just chat about architecture!
+      </p>
+      <div class="contact-buttons">
+        <a href="mailto:qais@example.com" class="btn btn-primary">
+          <i class="fas fa-envelope"></i>
+          Email Me
+        </a>
+        <a href="#" class="btn btn-secondary">
+          <i class="fas fa-download"></i>
+          Download Resume
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-behance"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+      <p>&copy; 2023 Qais Qadermal. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">
+      <i class="fas fa-times"></i>
+    </span>
+    <div class="lightbox-content">
+      <div class="lightbox-img-container">
+        <img id="lightbox-img" class="lightbox-img" src="" alt="">
+      </div>
+      <div class="lightbox-info">
+        <h3 id="lightbox-title">Title</h3>
+        <p id="lightbox-description">Description</p>
+        <div class="lightbox-tags" id="lightbox-tags"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- AI Assistant -->
+  <div class="ai-assistant" id="ai-assistant">
+    <i class="fas fa-robot"></i>
+  </div>
+  
+  <div class="ai-chat" id="ai-chat">
+    <div class="ai-chat-header">
+      <span>AI Portfolio Assistant</span>
+      <button class="ai-chat-close" id="ai-chat-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="ai-chat-messages" id="ai-chat-messages">
+      <div class="ai-message bot">
+        Hello! I'm your AI portfolio assistant. I can provide detailed information about Qais's work, design philosophy, and technical skills. How can I assist you today?
+      </div>
+      <div class="ai-suggestions">
+        <div class="ai-suggestion" onclick="askSuggestion('What projects has Qais worked on?')">Projects</div>
+        <div class="ai-suggestion" onclick="askSuggestion('Tell me about Qais\'s design process')">Design Process</div>
+        <div class="ai-suggestion" onclick="askSuggestion('What skills does Qais have?')">Skills</div>
+        <div class="ai-suggestion" onclick="askSuggestion('How does Qais approach sustainability?')">Sustainability</div>
+      </div>
+    </div>
+    <div class="ai-chat-input">
+      <input type="text" id="ai-input" placeholder="Type your message...">
+      <button id="ai-send">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Biometric Scanner -->
+  <div class="biometric-scanner" id="biometric-scanner">
+    <i class="fas fa-fingerprint"></i>
+  </div>
+
+  <script>
+    // Performance monitoring
+    let fps = 60;
+    let lastTime = performance.now();
+    let frames = 0;
+    
+    function updateFPS() {
+      frames++;
+      const currentTime = performance.now();
+      
+      if (currentTime >= lastTime + 1000) {
+        fps = Math.round((frames * 1000) / (currentTime - lastTime));
+        document.getElementById('fps-counter').textContent = `${fps} FPS`;
+        frames = 0;
+        lastTime = currentTime;
+      }
+      
+      requestAnimationFrame(updateFPS);
+    }
+    
+    updateFPS();
+    
+    // Tech Loading Screen
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('tech-loader').classList.add('hidden');
+        showNotification('Welcome', 'Portfolio loaded successfully!', 'success');
+      }, 2500);
+    });
+
+    // Particle.js Background
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 80,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#00d4ff"
+        },
+        shape: {
+          type: "circle",
+          stroke: {
+            width: 0,
+            color: "#000000"
+          }
+        },
+        opacity: {
+          value: 0.5,
+          random: false,
+          anim: {
+            enable: false,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: false,
+            speed: 40,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#00d4ff",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: {
+            enable: false,
+            rotateX: 600,
+            rotateY: 1200
+          }
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "grab"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 140,
+            line_linked: {
+              opacity: 1
+            }
+          },
+          push: {
+            particles_nb: 4
+          }
+        }
+      },
+      retina_detect: true
+    });
+
+    // Three.js Background
+    const threeContainer = document.getElementById('three-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    threeContainer.appendChild(renderer.domElement);
+
+    // Create a wireframe geometry
+    const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x00d4ff,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.3
+    });
+    const torusKnot = new THREE.Mesh(geometry, material);
+    scene.add(torusKnot);
+
+    camera.position.z = 30;
+
+    // Animation
+    function animate() {
+      requestAnimationFrame(animate);
+      torusKnot.rotation.x += 0.005;
+      torusKnot.rotation.y += 0.005;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Cursor glow effect
+    const cursorGlow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // Mobile Navigation
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = mobileMenuBtn.querySelector('i');
+      if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        if (targetId.startsWith('#')) {
+          // Show page transition
+          const pageTransition = document.getElementById('page-transition');
+          pageTransition.classList.add('active');
+          
+          setTimeout(() => {
+            navLinks.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+            
+            // Navigate to section
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+              targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Hide page transition
+            setTimeout(() => {
+              pageTransition.classList.remove('active');
+            }, 500);
+          }, 500);
+        }
+      });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Model Changer
+    function changeModel() {
+      const modelViewer = document.getElementById("model-viewer");
+      const modelSelector = document.getElementById("model-selector");
+      const selectedOption = modelSelector.options[modelSelector.selectedIndex];
+      
+      if (selectedOption.value) {
+        modelViewer.src = selectedOption.value;
+        document.getElementById("model-title").innerText = selectedOption.getAttribute("data-title");
+        document.getElementById("model-description").innerText = selectedOption.getAttribute("data-description");
+        
+        // Track model views
+        trackUserAction('model_view', {
+          model_name: selectedOption.getAttribute("data-title")
+        });
+      }
+    }
+    
+    // Lightbox
+    function openLightbox(galleryItem) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxDescription = document.getElementById('lightbox-description');
+      const lightboxTags = document.getElementById('lightbox-tags');
+      
+      const imgElement = galleryItem.querySelector('img');
+      
+      lightboxImg.src = imgElement.src;
+      lightboxImg.alt = imgElement.alt || "Image";
+      
+      const title = imgElement.dataset.title || imgElement.alt || "Untitled Work";
+      const description = imgElement.dataset.description || "No description available.";
+      const tagsString = imgElement.dataset.tags || "";
+      
+      lightboxTitle.textContent = title;
+      lightboxDescription.textContent = description;
+      
+      lightboxTags.innerHTML = '';
+      if (tagsString) {
+        const tagsArray = tagsString.split(',').map(tag => tag.trim()).filter(tag => tag);
+        tagsArray.forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'lightbox-tag';
+          tagElement.textContent = tag;
+          lightboxTags.appendChild(tagElement);
+        });
+      }
+      
+      lightbox.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      
+      // Track image views
+      trackUserAction('image_view', {
+        image_title: title,
+        image_category: galleryItem.closest('.gallery-section').querySelector('.section-title').textContent
+      });
+    }
+    
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    
+    // Close lightbox when clicking outside
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') {
+        closeLightbox();
+      }
+    });
+    
+    // Advanced AI Assistant
+    const aiAssistant = document.getElementById('ai-assistant');
+    const aiChat = document.getElementById('ai-chat');
+    const aiChatClose = document.getElementById('ai-chat-close');
+    const aiInput = document.getElementById('ai-input');
+    const aiSend = document.getElementById('ai-send');
+    const aiChatMessages = document.getElementById('ai-chat-messages');
+
+    // Knowledge base for AI responses
+    const knowledgeBase = {
+      projects: {
+        keywords: ['project', 'work', 'portfolio', 'design', 'building', 'architecture'],
+        response: "Qais has worked on various architectural projects including residential designs like the Horizon Haven Residence, urban planning concepts such as the Boardwalk Canopy, and detailed 3D visualizations. His portfolio showcases a range of work from conceptual sketches to fully realized models. Each project demonstrates his commitment to integrating sustainability, functionality, and aesthetic innovation."
+      },
+      process: {
+        keywords: ['process', 'design process', 'workflow', 'methodology', 'approach'],
+        response: "Qais follows a comprehensive five-stage design process: 1) Conceptualization - Research and ideation based on site context and client needs; 2) Design Development - Refining concepts through iterative sketching and modeling; 3) 3D Modeling - Creating detailed digital representations for spatial analysis; 4) Visualization - Producing high-quality renderings to communicate experiential qualities; 5) Documentation - Preparing technical drawings and specifications for implementation. This holistic approach ensures every project is both innovative and practically feasible."
+      },
+      model: {
+        keywords: ['model', '3d', 'modeling', 'visualization', 'digital'],
+        response: "Qais utilizes advanced 3D modeling software to create detailed architectural visualizations. His models focus on accurate spatial relationships, material representation, and lighting studies. The interactive 3D models in the portfolio allow viewers to explore designs from multiple angles, providing a comprehensive understanding of the spatial qualities. His modeling technique emphasizes both technical precision and artistic expression."
+      },
+      contact: {
+        keywords: ['contact', 'reach', 'email', 'collaborate', 'connect'],
+        response: "Qais welcomes collaboration opportunities and discussions about architectural projects. You can reach him through the contact section of this portfolio. He's particularly interested in sustainable design initiatives, innovative residential projects, and urban planning challenges. Whether you're a potential client, collaborator, or fellow architecture enthusiast, he encourages you to connect."
+      },
+      skills: {
+        keywords: ['skill', 'experience', 'ability', 'expertise', 'technique'],
+        response: "Qais has developed a comprehensive skill set in architectural design and visualization. His technical skills include 3D modeling with industry-standard software, AutoCAD for technical drawings, and hand sketching for conceptual exploration. He's also proficient in physical model making, architectural visualization, and graphic design. Additionally, he has web development skills, which he uses to create interactive digital experiences for architectural presentations."
+      },
+      sustainability: {
+        keywords: ['sustainability', 'sustainable', 'green', 'eco', 'environment'],
+        response: "Sustainability is a core principle in Qais's design philosophy. He approaches sustainability through multiple lenses: environmental impact, energy efficiency, material selection, and long-term adaptability. His designs often incorporate passive heating/cooling strategies, locally sourced materials, and flexible spaces that can evolve with changing needs. He believes that sustainable architecture should be both environmentally responsible and aesthetically compelling."
+      },
+      inspiration: {
+        keywords: ['inspiration', 'influence', 'muse', 'motivation'],
+        response: "Qais draws inspiration from a diverse range of sources: natural forms and patterns, historical architectural movements, contemporary urban dynamics, and technological innovations. He's particularly influenced by architects who successfully blend form and function, such as Tadao Ando's use of light and concrete, or Zaha Hadid's fluid spatial concepts. He also finds inspiration in the intersection of digital technology and traditional craftsmanship."
+      },
+      education: {
+        keywords: ['education', 'study', 'learn', 'school', 'training'],
+        response: "As a high school student passionate about architecture, Qais has pursued both formal and self-directed education in the field. He supplements his academic studies with online courses in architectural software, design theory, and sustainable practices. He believes in continuous learning and regularly attends architectural lectures, visits significant buildings, and studies architectural publications to expand his knowledge and refine his design approach."
+      },
+      future: {
+        keywords: ['future', 'goal', 'aspiration', 'career', 'plan'],
+        response: "Qais aspires to study architecture at a university level and eventually establish his own practice focused on innovative, sustainable design. He's particularly interested in exploring how emerging technologies like parametric design, 3D printing, and smart materials can transform architectural practice. His long-term goal is to create spaces that not only meet functional needs but also enhance human well-being and environmental health."
+      },
+      default: {
+        response: "I'm here to provide detailed information about Qais's architectural portfolio. You can ask about his projects, design process, technical skills, sustainability approach, sources of inspiration, educational background, or future aspirations. Feel free to explore the suggested topics or ask any specific question you might have."
+      }
+    };
+
+    // Function to process user messages and generate responses
+    function processMessage(message) {
+      const lowerMessage = message.toLowerCase();
+      
+      // Check each category in the knowledge base
+      for (const category in knowledgeBase) {
+        if (category === 'default') continue;
+        
+        const keywords = knowledgeBase[category].keywords;
+        for (const keyword of keywords) {
+          if (lowerMessage.includes(keyword)) {
+            return knowledgeBase[category].response;
+          }
+        }
+      }
+      
+      return knowledgeBase.default.response;
+    }
+
+    // Function to send AI message
+    function sendAiMessage() {
+      const message = aiInput.value.trim();
+      if (message) {
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'ai-message user';
+        userMessage.textContent = message;
+        aiChatMessages.appendChild(userMessage);
+        
+        // Clear input
+        aiInput.value = '';
+        
+        // Add typing indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.innerHTML = `
+          <span></span>
+          <span></span>
+          <span></span>
+        `;
+        aiChatMessages.appendChild(typingIndicator);
+        
+        // Scroll to bottom
+        aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+        
+        // Track AI interactions
+        trackUserAction('ai_interaction', {
+          message: message,
+          timestamp: new Date().toISOString()
+        });
+        
+        // Simulate AI response after a delay
+        setTimeout(() => {
+          // Remove typing indicator
+          aiChatMessages.removeChild(typingIndicator);
+          
+          // Get response
+          const response = processMessage(message);
+          
+          // Add bot message
+          const botMessage = document.createElement('div');
+          botMessage.className = 'ai-message bot';
+          botMessage.textContent = response;
+          aiChatMessages.appendChild(botMessage);
+          
+          // Add follow-up suggestions
+          const suggestions = document.createElement('div');
+          suggestions.className = 'ai-suggestions';
+          
+          // Determine which suggestions to show based on the conversation
+          if (lowerMessage.includes('project') || lowerMessage.includes('work')) {
+            suggestions.innerHTML = `
+              <div class="ai-suggestion" onclick="askSuggestion('Tell me more about the design process')">Design Process</div>
+              <div class="ai-suggestion" onclick="askSuggestion('What software is used for 3D modeling?')">3D Modeling</div>
+              <div class="ai-suggestion" onclick="askSuggestion('How does Qais approach sustainability?')">Sustainability</div>
+            `;
+          } else if (lowerMessage.includes('process') || lowerMessage.includes('workflow')) {
+            suggestions.innerHTML = `
+              <div class="ai-suggestion" onclick="askSuggestion('What projects has Qais worked on?')">Projects</div>
+              <div class="ai-suggestion" onclick="askSuggestion('What skills does Qais have?')">Skills</div>
+              <div class="ai-suggestion" onclick="askSuggestion('Where does Qais find inspiration?')">Inspiration</div>
+            `;
+          } else if (lowerMessage.includes('skill') || lowerMessage.includes('experience')) {
+            suggestions.innerHTML = `
+              <div class="ai-suggestion" onclick="askSuggestion('Tell me about Qais\'s education')">Education</div>
+              <div class="ai-suggestion" onclick="askSuggestion('What are Qais\'s career goals?')">Future Goals</div>
+              <div class="ai-suggestion" onclick="askSuggestion('How can I contact Qais?')">Contact</div>
+            `;
+          } else {
+            suggestions.innerHTML = `
+              <div class="ai-suggestion" onclick="askSuggestion('What projects has Qais worked on?')">Projects</div>
+              <div class="ai-suggestion" onclick="askSuggestion('Tell me about Qais\'s design process')">Design Process</div>
+              <div class="ai-suggestion" onclick="askSuggestion('What skills does Qais have?')">Skills</div>
+            `;
+          }
+          
+          aiChatMessages.appendChild(suggestions);
+          
+          // Scroll to bottom
+          aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+        }, 1500);
+      }
+    }
+
+    // Function to handle suggested questions
+    function askSuggestion(question) {
+      aiInput.value = question;
+      sendAiMessage();
+    }
+
+    // Event listeners for AI assistant
+    aiAssistant.addEventListener('click', () => {
+      aiChat.classList.add('active');
+      trackUserAction('ai_open', {
+        timestamp: new Date().toISOString()
+      });
+    });
+
+    aiChatClose.addEventListener('click', () => {
+      aiChat.classList.remove('active');
+    });
+
+    aiSend.addEventListener('click', sendAiMessage);
+    aiInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendAiMessage();
+      }
+    });
+
+    // Biometric Scanner
+    const biometricScanner = document.getElementById('biometric-scanner');
+    biometricScanner.addEventListener('click', () => {
+      biometricScanner.classList.add('active');
+      
+      // Track biometric access attempts
+      trackUserAction('biometric_scan', {
+        timestamp: new Date().toISOString()
+      });
+      
+      // Simulate scanning
+      setTimeout(() => {
+        biometricScanner.classList.remove('active');
+        
+        // Create a notification
+        showNotification('Access Granted', 'Biometric authentication successful!', 'success');
+      }, 1500);
+    });
+
+    // Neural Network Visualization
+    const neuralCanvas = document.getElementById('neural-viz');
+    const neuralCtx = neuralCanvas.getContext('2d');
+    neuralCanvas.width = window.innerWidth;
+    neuralCanvas.height = window.innerHeight;
+
+    // Create nodes
+    const nodes = [];
+    const nodeCount = 50;
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * neuralCanvas.width,
+        y: Math.random() * neuralCanvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 3 + 1
+      });
+    }
+
+    // Draw connections between nodes
+    function drawConnections() {
+      neuralCtx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+      
+      // Update node positions
+      nodes.forEach(node => {
+        node.x += node.vx;
+        node.y += node.vy;
+        
+        // Bounce off edges
+        if (node.x < 0 || node.x > neuralCanvas.width) node.vx *= -1;
+        if (node.y < 0 || node.y > neuralCanvas.height) node.vy *= -1;
+        
+        // Draw node
+        neuralCtx.beginPath();
+        neuralCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        neuralCtx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+        neuralCtx.fill();
+      });
+      
+      // Draw connections
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 150) {
+            neuralCtx.beginPath();
+            neuralCtx.moveTo(nodes[i].x, nodes[i].y);
+            neuralCtx.lineTo(nodes[j].x, nodes[j].y);
+            neuralCtx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - distance / 150)})`;
+            neuralCtx.lineWidth = 1;
+            neuralCtx.stroke();
+          }
+        }
+      }
+      
+      requestAnimationFrame(drawConnections);
+    }
+
+    drawConnections();
+
+    // Handle window resize for neural visualization
+    window.addEventListener('resize', () => {
+      neuralCanvas.width = window.innerWidth;
+      neuralCanvas.height = window.innerHeight;
+    });
+
+    // Add holographic effect to section titles
+    document.querySelectorAll('.section-title').forEach(title => {
+      title.classList.add('holographic');
+    });
+
+    // Add glitch effect to gallery items on hover
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        const title = this.querySelector('h3');
+        if (title) {
+          title.setAttribute('data-text', title.textContent);
+          title.classList.add('glitch');
+        }
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        const title = this.querySelector('h3');
+        if (title) {
+          title.classList.remove('glitch');
+        }
+      });
+    });
+
+    // Add interactive hover effect to 3D models
+const modelViewer = document.getElementById('model-viewer');
+if (modelViewer) {
+  // Add mouseenter event
+  modelViewer.addEventListener('mouseenter', () => {
+    modelViewer.setAttribute('camera-controls', 'true');
+  });
+  
+  // Add error handling for model viewer
+  modelViewer.addEventListener('error', function() {
+    showNotification('Model Loading Error', 'The 3D model could not be loaded. Please try again later.', 'error');
+    
+    // Track model errors
+    trackUserAction('model_error', {
+      src: this.src,
+      timestamp: new Date().toISOString()
+    });
+  });
+}
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          
+          // Track section views
+          const sectionId = entry.target.id || entry.target.closest('section')?.id;
+          if (sectionId) {
+            trackUserAction('section_view', {
+              section_id: sectionId,
+              timestamp: new Date().toISOString()
+            });
+          }
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all elements with animate class
+    document.querySelectorAll('.animate').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Notification System
+    function showNotification(title, message, type = 'info') {
+      const notificationContainer = document.getElementById('notification-container');
+      
+      // Remove existing notifications
+      const existingNotifications = notificationContainer.querySelectorAll('.notification');
+      existingNotifications.forEach(notification => {
+        notification.remove();
+      });
+      
+      // Create new notification
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      
+      let iconClass = 'fa-info-circle';
+      let iconColor = 'var(--secondary)';
+      
+      if (type === 'success') {
+        iconClass = 'fa-check-circle';
+        iconColor = 'var(--gradient-3)';
+      } else if (type === 'error') {
+        iconClass = 'fa-exclamation-circle';
+        iconColor = 'var(--accent)';
+      } else if (type === 'warning') {
+        iconClass = 'fa-exclamation-triangle';
+        iconColor = '#FFA500';
+      }
+      
+      notification.innerHTML = `
+        <button class="notification-close">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="notification-header">
+          <i class="fas ${iconClass} notification-icon" style="color: ${iconColor}"></i>
+          <div class="notification-title">${title}</div>
+        </div>
+        <div class="notification-message">${message}</div>
+      `;
+      
+      notificationContainer.appendChild(notification);
+      
+      // Show notification
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 10);
+      
+      // Auto hide after 5 seconds
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }, 5000);
+      
+      // Close button functionality
+      const closeBtn = notification.querySelector('.notification-close');
+      closeBtn.addEventListener('click', () => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      });
+    }
+
+    // User Analytics Tracking
+    function trackUserAction(action, data = {}) {
+      // In a real implementation, this would send data to a backend server
+      // For demo purposes, we'll just log to console
+      console.log('User Action:', {
+        action,
+        data,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        screenResolution: `${window.innerWidth}x${window.innerHeight}`,
+        referrer: document.referrer
+      });
+      
+      // Store in localStorage for demo purposes
+      const userActions = JSON.parse(localStorage.getItem('userActions') || '[]');
+      userActions.push({
+        action,
+        data,
+        timestamp: new Date().toISOString()
+      });
+      
+      // Keep only the last 100 actions
+      if (userActions.length > 100) {
+        userActions.shift();
+      }
+      
+      localStorage.setItem('userActions', JSON.stringify(userActions));
+    }
+
+    // Enhanced Parallax Effect
+    function initParallax() {
+      const parallaxElements = document.querySelectorAll('.parallax-element');
+      
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        parallaxElements.forEach(element => {
+          const speed = element.dataset.speed || 0.5;
+          const yPos = -(scrollY * speed);
+          element.style.transform = `translateY(${yPos}px)`;
+        });
+      });
+    }
+
+    // Initialize parallax
+    initParallax();
+
+    // Add parallax elements to sections
+    document.querySelectorAll('section').forEach(section => {
+      const parallaxElement = document.createElement('div');
+      parallaxElement.className = 'parallax-element';
+      parallaxElement.dataset.speed = '0.2';
+      section.appendChild(parallaxElement);
+    });
+
+    // Track page load
+    window.addEventListener('load', () => {
+      trackUserAction('page_load', {
+        load_time: performance.now(),
+        page: window.location.pathname
+      });
+    });
+
+    // Track page visibility changes
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        trackUserAction('page_hidden', {
+          timestamp: new Date().toISOString()
+        });
+      } else {
+        trackUserAction('page_visible', {
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+
+    // Track link clicks
+    document.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        
+        if (href && href.startsWith('http')) {
+          trackUserAction('external_link_click', {
+            href: href,
+            text: link.textContent.trim()
+          });
+        }
+      });
+    });
+
+    // Track social media clicks
+    document.querySelectorAll('.social-links a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const platform = link.querySelector('i').className.split(' ')[1].replace('fa-', '');
+        trackUserAction('social_click', {
+          platform: platform,
+          timestamp: new Date().toISOString()
+        });
+      });
+    });
+
+    // Initialize performance monitoring
+    if ('PerformanceObserver' in window) {
+      const perfObserver = new PerformanceObserver((list) => {
+        const perfEntries = list.getEntries();
+        
+        perfEntries.forEach(entry => {
+          if (entry.entryType === 'measure') {
+            console.log('Performance:', {
+              name: entry.name,
+              duration: entry.duration,
+              startTime: entry.startTime
+            });
+          }
+        });
+      });
+      
+      perfObserver.observe({ entryTypes: ['measure'] });
+    }
+
+    // Performance marks
+    performance.mark('portfolio-start');
+    
+    window.addEventListener('load', () => {
+      performance.mark('portfolio-loaded');
+      performance.measure('portfolio-load-time', 'portfolio-start', 'portfolio-loaded');
+    });
+
+    // Add smooth scroll behavior for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          // Show page transition
+          const pageTransition = document.getElementById('page-transition');
+          pageTransition.classList.add('active');
+          
+          setTimeout(() => {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Hide page transition
+            setTimeout(() => {
+              pageTransition.classList.remove('active');
+            }, 500);
+          }, 500);
+          
+          // Track navigation
+          trackUserAction('navigation', {
+            from: window.location.pathname,
+            to: targetId,
+            timestamp: new Date().toISOString()
+          });
+        }
+      });
+    });
+
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      // Arrow keys for navigation
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        
+        const sections = Array.from(document.querySelectorAll('section'));
+        const currentSection = sections.find(section => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        });
+        
+        if (currentSection) {
+          const currentIndex = sections.indexOf(currentSection);
+          const nextIndex = (currentIndex + 1) % sections.length;
+          
+          sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+          
+          trackUserAction('keyboard_navigation', {
+            direction: 'next',
+            from: currentSection.id,
+            to: sections[nextIndex].id
+          });
+        }
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        
+        const sections = Array.from(document.querySelectorAll('section'));
+        const currentSection = sections.find(section => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        });
+        
+        if (currentSection) {
+          const currentIndex = sections.indexOf(currentSection);
+          const prevIndex = (currentIndex - 1 + sections.length) % sections.length;
+          
+          sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
+          
+          trackUserAction('keyboard_navigation', {
+            direction: 'previous',
+            from: currentSection.id,
+            to: sections[prevIndex].id
+          });
+        }
+      }
+      
+      // Escape key to close lightbox or AI chat
+      if (e.key === 'Escape') {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox.classList.contains('show')) {
+          closeLightbox();
+        }
+        
+        const aiChat = document.getElementById('ai-chat');
+        if (aiChat.classList.contains('active')) {
+          aiChat.classList.remove('active');
+        }
+      }
+    });
+
+    // Add swipe gestures for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        const sections = Array.from(document.querySelectorAll('section'));
+        const currentSection = sections.find(section => {
+          const rect = section.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        });
+        
+        if (currentSection) {
+          const currentIndex = sections.indexOf(currentSection);
+          
+          if (diff > 0) {
+            // Swipe left - next section
+            const nextIndex = (currentIndex + 1) % sections.length;
+            sections[nextIndex].scrollIntoView({ behavior: 'smooth' });
+            
+            trackUserAction('swipe_navigation', {
+              direction: 'next',
+              from: currentSection.id,
+              to: sections[nextIndex].id
+            });
+          } else {
+            // Swipe right - previous section
+            const prevIndex = (currentIndex - 1 + sections.length) % sections.length;
+            sections[prevIndex].scrollIntoView({ behavior: 'smooth' });
+            
+            trackUserAction('swipe_navigation', {
+              direction: 'previous',
+              from: currentSection.id,
+              to: sections[prevIndex].id
+            });
+          }
+        }
+      }
+    }
+
+    // Add dark mode toggle (for future implementation)
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      
+      // Save preference to localStorage
+      localStorage.setItem('darkMode', isDarkMode);
+      
+      // Track preference change
+      trackUserAction('dark_mode_toggle', {
+        enabled: isDarkMode,
+        timestamp: new Date().toISOString()
+      });
+      
+      showNotification(
+        isDarkMode ? 'Dark Mode Enabled' : 'Light Mode Enabled',
+        `You have switched to ${isDarkMode ? 'dark' : 'light'} mode.`,
+        'success'
+      );
+    }
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Add accessibility features
+    function enhanceAccessibility() {
+      // Add skip to main content link
+      const skipLink = document.createElement('a');
+      skipLink.href = '#home';
+      skipLink.textContent = 'Skip to main content';
+      skipLink.className = 'skip-link';
+      skipLink.style.cssText = `
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: var(--bg-light);
+        color: var(--text);
+        padding: 8px;
+        text-decoration: none;
+        z-index: 1001;
+        border-radius: 0 0 4px 0;
+      `;
+      
+      skipLink.addEventListener('focus', () => {
+        skipLink.style.top = '0';
+      });
+      
+      skipLink.addEventListener('blur', () => {
+        skipLink.style.top = '-40px';
+      });
+      
+      document.body.insertBefore(skipLink, document.body.firstChild);
+      
+      // Add ARIA labels to interactive elements
+      document.querySelectorAll('button, a').forEach(element => {
+        if (!element.getAttribute('aria-label') && element.textContent.trim()) {
+          element.setAttribute('aria-label', element.textContent.trim());
+        }
+      });
+      
+      // Add keyboard navigation indicators
+      const navLinks = document.querySelectorAll('.nav-links a');
+      navLinks.forEach((link, index) => {
+        link.setAttribute('tabindex', '0');
+        link.addEventListener('focus', () => {
+          showNotification('Keyboard Navigation', `Item ${index + 1} of ${navLinks.length}`, 'info');
+        });
+      });
+    }
+
+    // Initialize accessibility features
+    enhanceAccessibility();
+
+    // Add print styles
+    const printStyles = document.createElement('style');
+    printStyles.textContent = `
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        
+        body {
+          background: white !important;
+          color: black !important;
+        }
+        
+        .section-title {
+          color: black !important;
+        }
+        
+        .gallery-item {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+        
+        .ai-assistant, .biometric-scanner, .performance-metrics {
+          display: none !important;
+        }
+      }
+    `;
+    document.head.appendChild(printStyles);
+
+    // Add print functionality
+    function printPage() {
+      trackUserAction ('print_page', {
+        timestamp: new Date().toISOString()
+      });
+      window.print();
+    }
+    
+    // Add print button to the contact section
+    const contactButtons = document.querySelector('.contact-buttons');
+    if (contactButtons) {
+      const printButton = document.createElement('a');
+      printButton.href = '#';
+      printButton.className = 'btn btn-secondary no-print';
+      printButton.innerHTML = '<i class="fas fa-print"></i> Print Portfolio';
+      printButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        printPage();
+      });
+      contactButtons.appendChild(printButton);
+    }
+    
+    // Add download functionality for resume
+    const downloadResumeBtn = document.querySelector('.contact-buttons .btn-secondary');
+    if (downloadResumeBtn && downloadResumeBtn.textContent.includes('Download Resume')) {
+      downloadResumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Track resume download
+        trackUserAction('resume_download', {
+          timestamp: new Date().toISOString()
+        });
+        
+        // In a real implementation, this would download an actual file
+        showNotification('Download Started', 'Your resume download will begin shortly.', 'success');
+        
+        // Simulate download
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = 'https://pub-43026960fc13465cab8c8a6f01fb4f78.r2.dev/Qais_Qadermal_Resume.pdf';
+          link.download = 'Qais_Qadermal_Resume.pdf';
+          link.click();
+        }, 1000);
+      });
+    }
+    
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Ctrl/Cmd + K to open AI assistant
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        aiChat.classList.toggle('active');
+        
+        if (aiChat.classList.contains('active')) {
+          aiInput.focus();
+        }
+      }
+      
+      // Ctrl/Cmd + P to print
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        printPage();
+      }
+      
+      // Ctrl/Cmd + D to toggle dark mode (for future implementation)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+        e.preventDefault();
+        toggleDarkMode();
+      }
+    });
+    
+    // Add tooltips for accessibility
+    function addTooltips() {
+      const elementsWithTooltips = [
+        { selector: '.ai-assistant', text: 'Open AI Assistant (Ctrl+K)' },
+        { selector: '.biometric-scanner', text: 'Biometric Authentication' },
+        { selector: '.logo', text: 'Return to Home' },
+        { selector: '.model-viewer-wrapper', text: 'Interactive 3D Model - Click and drag to rotate' }
+      ];
+      
+      elementsWithTooltips.forEach(item => {
+        const elements = document.querySelectorAll(item.selector);
+        elements.forEach(element => {
+          element.setAttribute('title', item.text);
+          element.setAttribute('aria-label', item.text);
+        });
+      });
+    }
+    
+    // Initialize tooltips
+    addTooltips();
+    
+    // Add loading animation for images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('load', function() {
+        this.classList.add('loaded');
+      });
+      
+      // If image is already loaded (cached)
+      if (img.complete) {
+        img.classList.add('loaded');
+      }
+    });
+    
+    // Add error handling for images
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        this.src = 'https://picsum.photos/seed/error/400/300.jpg';
+        this.alt = 'Image not available';
+        
+        // Track image errors
+        trackUserAction('image_error', {
+          src: this.src,
+          alt: this.alt
+        });
+      });
+    });
+    
+    // Add lazy loading for images
+    if ('IntersectionObserver' in window) {
+      const imgObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src || img.src;
+            img.classList.add('loaded');
+            observer.unobserve(img);
+          }
+        });
+      });
+      
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imgObserver.observe(img);
+      });
+    }
+    
+    // Add a "Back to Top" button
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.className = 'back-to-top no-print';
+    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    backToTopBtn.setAttribute('aria-label', 'Back to top');
+    backToTopBtn.style.cssText = `
+      position: fixed;
+      bottom: 30px;
+      right: 100px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-3);
+      color: var(--bg-dark);
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+      z-index: 997;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    `;
+    
+    document.body.appendChild(backToTopBtn);
+    
+    // Show/hide back to top button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopBtn.style.opacity = '1';
+        backToTopBtn.style.visibility = 'visible';
+      } else {
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.visibility = 'hidden';
+      }
+    });
+    
+    // Scroll to top when button is clicked
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      
+      // Track back to top usage
+      trackUserAction('back_to_top', {
+        timestamp: new Date().toISOString()
+      });
+    });
+    
+    // Add a progress bar for page reading
+    const progressBar = document.createElement('div');
+    progressBar.className = 'reading-progress no-print';
+    progressBar.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--gradient-3);
+      z-index: 1001;
+      transition: width 0.1s ease;
+    `;
+    
+    document.body.appendChild(progressBar);
+    
+    // Update progress bar based on scroll position
+    window.addEventListener('scroll', () => {
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPosition = window.scrollY;
+      const scrollPercentage = (scrollPosition / scrollHeight) * 100;
+      
+      progressBar.style.width = `${scrollPercentage}%`;
+    });
+    
+    // Add a "Share" functionality
+    function shareContent() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Qais Qadermal | Architectural Portfolio',
+          text: 'Check out my architectural portfolio featuring innovative designs and 3D visualizations.',
+          url: window.location.href
+        })
+        .then(() => {
+          showNotification('Shared Successfully', 'Thank you for sharing my portfolio!', 'success');
+          
+          // Track successful shares
+          trackUserAction('share_success', {
+            method: 'Web Share API',
+            timestamp: new Date().toISOString()
+          });
+        })
+        .catch((error) => {
+          console.log('Error sharing:', error);
+        });
+      } else {
+        // Fallback for browsers that don't support Web Share API
+        const url = window.location.href;
+        navigator.clipboard.writeText(url)
+          .then(() => {
+            showNotification('Link Copied', 'Portfolio link copied to clipboard!', 'success');
+            
+            // Track copy to clipboard
+            trackUserAction('share_copy_link', {
+              timestamp: new Date().toISOString()
+            });
+          })
+          .catch((error) => {
+            showNotification('Copy Failed', 'Unable to copy link to clipboard.', 'error');
+          });
+      }
+    }
+    
+    // Add share button to the footer
+    const footerContent = document.querySelector('.footer-content');
+    if (footerContent) {
+      const shareButton = document.createElement('a');
+      shareButton.href = '#';
+      shareButton.className = 'btn btn-secondary no-print';
+      shareButton.innerHTML = '<i class="fas fa-share-alt"></i> Share Portfolio';
+      shareButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        shareContent();
+      });
+      
+      const socialLinks = footerContent.querySelector('.social-links');
+      if (socialLinks) {
+        socialLinks.parentNode.insertBefore(shareButton, socialLinks.nextSibling);
+      }
+    }
+    
+    // Initialize all animations on page load
+    window.addEventListener('load', () => {
+      // Add animate class to elements that should be animated on load
+      document.querySelectorAll('.hero-content > *').forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('animate');
+        }, index * 200);
+      });
+      
+      // Mark performance end
+      performance.mark('portfolio-animations-start');
+      
+      // Initialize all animations
+      document.querySelectorAll('.animate').forEach(el => {
+        observer.observe(el);
+      });
+      
+      performance.mark('portfolio-animations-end');
+      performance.measure('portfolio-animations', 'portfolio-animations-start', 'portfolio-animations-end');
+    });
+    
+    // Add a final performance measurement
+    window.addEventListener('beforeunload', () => {
+      // Calculate time spent on page
+      const timeSpent = Math.round((performance.now() - window.performance.timing.navigationStart) / 1000);
+      
+      // Track page unload
+      trackUserAction('page_unload', {
+        time_spent_seconds: timeSpent,
+        timestamp: new Date().toISOString()
+      });
+    });
+    
+    // Initialize the neural network visualization when the page is fully loaded
+    window.addEventListener('load', () => {
+      // Initialize neural network
+      const neuralCanvas = document.getElementById('neural-viz');
+      if (neuralCanvas) {
+        const neuralCtx = neuralCanvas.getContext('2d');
+        neuralCanvas.width = window.innerWidth;
+        neuralCanvas.height = window.innerHeight;
+        
+        // Create nodes
+        const nodes = [];
+        const nodeCount = 50;
+        for (let i = 0; i < nodeCount; i++) {
+          nodes.push({
+            x: Math.random() * neuralCanvas.width,
+            y: Math.random() * neuralCanvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            radius: Math.random() * 3 + 1
+          });
+        }
+        
+        // Animation function for neural network
+        function animateNeuralNetwork() {
+          neuralCtx.clearRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+          
+          // Update node positions
+          nodes.forEach(node => {
+            node.x += node.vx;
+            node.y += node.vy;
+            
+            // Bounce off edges
+            if (node.x < 0 || node.x > neuralCanvas.width) node.vx *= -1;
+            if (node.y < 0 || node.y > neuralCanvas.height) node.vy *= -1;
+            
+            // Draw node
+            neuralCtx.beginPath();
+            neuralCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            neuralCtx.fillStyle = 'rgba(0, 212, 255, 0.5)';
+            neuralCtx.fill();
+          });
+          
+          // Draw connections
+          for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+              const dx = nodes[i].x - nodes[j].x;
+              const dy = nodes[i].y - nodes[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              
+              if (distance < 150) {
+                neuralCtx.beginPath();
+                neuralCtx.moveTo(nodes[i].x, nodes[i].y);
+                neuralCtx.lineTo(nodes[j].x, nodes[j].y);
+                neuralCtx.strokeStyle = `rgba(0, 212, 255, ${0.2 * (1 - distance / 150)})`;
+                neuralCtx.lineWidth = 1;
+                neuralCtx.stroke();
+              }
+            }
+          }
+          
+          requestAnimationFrame(animateNeuralNetwork);
+        }
+        
+        animateNeuralNetwork();
+      }
+    });
+    
+    // Add a final console message for developers
+    console.log('%cQais Qadermal Architectural Portfolio', 'color: #00D4FF; font-size: 24px; font-weight: bold;');
+    console.log('%cDesigned and developed with passion for architecture and web technologies.', 'color: #F8F9FA; font-size: 16px;');
+    console.log('%c© 2023 Qais Qadermal. All rights reserved.', 'color: #A0AEC0; font-size: 14px;');
+  </script>
 </body>
 </html>
